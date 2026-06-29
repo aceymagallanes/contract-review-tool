@@ -1,0 +1,19 @@
+# --- Secrets: NEVER commit your real API key ---
+.env
+
+# --- Python clutter ---
+__pycache__/
+*.pyc
+
+# --- macOS clutter ---
+.DS_Store
+
+# --- Virtual environment folders ---
+venv/
+.venv/
+env/
+ENV/
+
+# --- Optional: generated output (uncomment if you don't want results in git) ---
+# results.json
+# results.csv
