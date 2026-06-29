@@ -2,325 +2,1738 @@
   {
     "contract_name": "01_saas_standard.pdf",
     "contract_type": "Software as a Service (SaaS) Agreement",
-    "overall_risk_score": 25,
+    "overall_risk_score": 28,
     "risk_tier": "Low",
-    "plain_english_summary": "This is a standard 12-month SaaS contract between CloudVerve and Northwind Retail with fairly balanced terms. The agreement includes reasonable protections for both parties, with caps on liability limited to fees paid and standard termination rights. Overall, this is a low-risk contract with industry-standard provisions.",
+    "plain_english_summary": "This is a standard one-year SaaS contract between CloudVerve Inc. and Northwind Retail Ltd. with fairly balanced terms. The contract includes reasonable protections for both parties, with a liability cap equal to 12 months of fees and standard confidentiality obligations. Most terms are industry-standard, though there are a few areas where the customer could negotiate better protections.",
     "clauses": [
       {
         "clause_type": "Term and Renewal",
-        "finding": "12-month initial term with opt-out renewal requiring 30 days notice before term ends",
+        "finding": "12-month initial term with no automatic renewal; requires 30-day written notice to prevent renewal",
         "risk_level": "Favorable",
-        "explanation": "This is customer-friendly because it does not auto-renew automatically. Either party can choose not to renew with proper notice, preventing unwanted contract continuation.",
-        "recommendation": "Set a calendar reminder 60 days before the term ends to evaluate whether to renew or provide termination notice."
+        "explanation": "This is customer-friendly because it does not automatically renew. Either party must actively choose to renew, preventing surprise renewals and unwanted charges.",
+        "recommendation": "No action needed. This term structure protects the customer from being locked into unwanted renewals."
       },
       {
         "clause_type": "Fees and Payment",
-        "finding": "30-day payment terms with 1.0% monthly interest on late payments (12% annually)",
+        "finding": "Fees per Order Form, 30-day payment terms, 1% monthly late fee (12% annually)",
         "risk_level": "Neutral",
-        "explanation": "Standard payment terms for B2B SaaS contracts. The late payment interest rate is reasonable and not predatory.",
-        "recommendation": "Ensure your accounts payable team is aware of the 30-day payment window to avoid interest charges."
+        "explanation": "Standard payment terms. The 1% monthly interest rate is reasonable and common in commercial contracts. Payment terms are clear and predictable.",
+        "recommendation": "Ensure the Order Form clearly specifies all fees, including any implementation, support, or overage charges."
       },
       {
         "clause_type": "Termination",
-        "finding": "Either party can terminate for material breach with 30-day cure period; Customer must pay accrued fees through termination",
+        "finding": "Either party may terminate for material breach with 30-day cure period; customer must pay fees through termination date",
         "risk_level": "Neutral",
-        "explanation": "Balanced termination rights give both parties protection. The 30-day cure period allows time to fix issues before contract ends. You remain obligated to pay for services received.",
-        "recommendation": "Document any provider performance issues in writing immediately to establish the foundation for potential breach termination if needed."
+        "explanation": "Balanced termination rights give both parties a way out if things go wrong. The 30-day cure period is fair and allows time to fix issues before contract ends.",
+        "recommendation": "Consider negotiating a 'termination for convenience' clause that allows you to exit with 60-90 days notice, even without breach."
       },
       {
         "clause_type": "Limitation of Liability",
-        "finding": "Liability capped at fees paid in preceding 12 months; no liability for indirect or consequential damages except confidentiality breaches",
+        "finding": "Liability capped at fees paid in prior 12 months; no indirect or consequential damages; exception for confidentiality breaches",
         "risk_level": "Risky",
-        "explanation": "While the cap is standard for SaaS contracts, it means if the software fails and costs your business significantly, you can only recover up to one year of subscription fees. Consequential damages (like lost revenue) are excluded.",
-        "recommendation": "Consider purchasing separate cyber insurance or business interruption insurance to cover losses beyond the liability cap, especially if this software is mission-critical."
+        "explanation": "While liability caps are standard, this limits your recovery if the service fails catastrophically. If you pay $10,000/year but a data breach causes $100,000 in damages, you can only recover $10,000.",
+        "recommendation": "Negotiate higher caps for data breaches, security incidents, or gross negligence. Consider requesting separate, higher caps for data protection violations."
       },
       {
         "clause_type": "Confidentiality",
-        "finding": "Mutual confidentiality obligation using reasonable care standard; survives 3 years post-termination",
+        "finding": "Mutual confidentiality obligations using reasonable care standard; survives 3 years post-termination",
         "risk_level": "Neutral",
-        "explanation": "Standard mutual confidentiality provision protects both parties' sensitive information. The 3-year survival period is typical for SaaS agreements.",
-        "recommendation": "Clearly mark any sensitive information shared with the provider as 'Confidential' and maintain records of what was shared."
+        "explanation": "Standard mutual protection for confidential information. Three-year survival is typical for SaaS agreements and protects both parties' trade secrets.",
+        "recommendation": "Ensure your confidential information is clearly marked and that employees understand what qualifies as confidential under the agreement."
       },
       {
         "clause_type": "Data Protection",
-        "finding": "Provider commits to industry-standard security measures and will only process Customer Data to provide services",
+        "finding": "Provider must use industry-standard security measures and only process data to provide services",
         "risk_level": "Neutral",
-        "explanation": "Basic data protection commitment, though 'industry-standard' is somewhat vague. The limitation on data processing is positive and suggests compliance with privacy regulations.",
-        "recommendation": "Request a copy of the provider's SOC 2 report or security certifications to verify their actual security practices meet your standards."
+        "explanation": "Basic data protection clause limiting how provider can use your data. However, 'industry-standard' is vague and lacks specific security commitments or compliance certifications.",
+        "recommendation": "Request specific security standards (SOC 2, ISO 27001) and add a Data Processing Agreement (DPA) if handling personal data subject to GDPR or CCPA."
       },
       {
         "clause_type": "Governing Law",
-        "finding": "Delaware law applies without conflict-of-laws principles",
+        "finding": "Delaware law governs the contract",
         "risk_level": "Neutral",
-        "explanation": "Delaware is a common and business-friendly jurisdiction for commercial contracts. This is standard for many U.S.-based SaaS providers.",
-        "recommendation": "No action needed unless your company is international and would prefer different governing law; negotiate this before signing if location is important."
+        "explanation": "Delaware is a common and predictable jurisdiction for commercial contracts with well-established business law. Unless you're in a very different jurisdiction, this is reasonable.",
+        "recommendation": "If Northwind Retail operates primarily in another state or country, consider negotiating for your home jurisdiction to reduce legal costs in disputes."
       }
     ],
     "red_flags": [
-      "Limitation of liability caps recovery at only 12 months of fees paid, which may be insufficient if the software is business-critical",
-      "No explicit service level agreement (SLA) or uptime guarantees mentioned in the contract",
-      "Data protection clause uses vague 'industry-standard' language without specific security requirements or certifications",
-      "No mention of intellectual property ownership of customizations, integrations, or data outputs"
+      "Liability cap may be insufficient if service failure causes significant business disruption or data loss",
+      "No specific security certifications (SOC 2, ISO 27001) or compliance commitments mentioned",
+      "Vague 'industry-standard' security measures lack concrete requirements",
+      "No Service Level Agreement (SLA) or uptime guarantees specified",
+      "No explicit data breach notification requirements or timeline",
+      "Missing IP ownership clarification regarding customer data and derivative works"
     ],
-    "top_recommendation": "Before signing, request an exhibit that includes specific service level commitments (uptime percentage, support response times) and verify the provider's security certifications meet your compliance requirements, especially if handling sensitive customer or financial data."
+    "top_recommendation": "Before signing, request a detailed Service Level Agreement (SLA) with uptime guarantees and negotiate higher liability caps specifically for data breaches and security incidents, as the current cap of 12 months fees may be inadequate if critical business data is compromised."
   },
   {
     "contract_name": "02_vendor_risky.pdf",
     "contract_type": "Master Vendor Services Agreement",
     "overall_risk_score": 92,
     "risk_tier": "High",
-    "plain_english_summary": "This is an extremely one-sided vendor agreement that heavily favors the vendor while exposing the customer to significant financial and operational risk. The contract locks the customer into long renewal periods with almost no ability to terminate, caps vendor liability at only $100 regardless of damages caused, and requires the customer to indemnify the vendor even for the vendor's own negligence or intentional wrongdoing.",
+    "plain_english_summary": "This is an extremely one-sided vendor agreement that heavily favors the vendor while exposing the customer to significant legal and financial risk. The contract includes automatic renewals with long notice periods, unlimited price increases, almost no vendor liability, forced exclusivity, and the vendor can terminate anytime while the customer is locked in. This agreement should not be signed without major revisions.",
     "clauses": [
       {
         "clause_type": "Auto-Renewal",
-        "finding": "Automatic 24-month renewals requiring 90 days advance notice to cancel, binding customer to full term if notice is missed",
+        "finding": "Automatically renews for 24-month terms unless customer gives 90 days advance notice; failure to cancel on time locks customer in for another full 2-year term",
         "risk_level": "Risky",
-        "explanation": "This creates a trap where missing the 90-day deadline locks you into another 2 years of service with no escape. Most reasonable contracts have 12-month terms with 30-60 day notice periods.",
-        "recommendation": "Negotiate for 12-month renewal terms with 30-day notice period, or add language allowing termination for fee increases"
+        "explanation": "The 90-day notice requirement for a 24-month commitment is extremely burdensome and creates a trap where missing the deadline forces you into another two years of service you may not want",
+        "recommendation": "Negotiate for annual terms with 30-day notice period, or at minimum reduce to 30-60 day notice for cancellation"
       },
       {
         "clause_type": "Fees/Payment",
-        "finding": "Vendor can unilaterally increase fees up to 15% annually with only 30 days notice, and customer cannot terminate as a result",
+        "finding": "Vendor can unilaterally raise prices by up to 15% annually with only 30 days notice, and customer cannot terminate even if price becomes unreasonable",
         "risk_level": "Risky",
-        "explanation": "The vendor can raise prices 15% every year and you have no recourse - you're stuck paying whatever they charge. This could dramatically increase costs over time with no ability to shop alternatives.",
-        "recommendation": "Negotiate a fee cap (e.g., 3-5% annually tied to CPI) and add termination right if fees increase beyond agreed threshold"
+        "explanation": "This allows the vendor to increase your costs by 15% every year without your agreement and without giving you any way out, potentially doubling your costs over 5 years",
+        "recommendation": "Negotiate a cap on annual increases (e.g., 3-5% or CPI), and secure the right to terminate if fees increase beyond a certain threshold"
       },
       {
         "clause_type": "Limitation of Liability",
-        "finding": "Vendor liability capped at $100 total regardless of damages, disclaiming liability even for their own negligence",
+        "finding": "Vendor's total liability is capped at $100 regardless of damages caused, and vendor disclaims liability even for its own negligence",
         "risk_level": "Risky",
-        "explanation": "If the vendor's mistakes cost you $1 million, you can only recover $100. They're essentially not responsible for any damage they cause, even if they're careless or negligent.",
-        "recommendation": "Negotiate liability cap at minimum of 12 months fees or actual damages. Remove disclaimer for negligence and ensure gross negligence/willful misconduct are never limited"
+        "explanation": "If the vendor causes a million dollars in damages through negligence or service failure, you can only recover $100 - this makes the vendor essentially judgment-proof and removes any financial incentive for them to perform properly",
+        "recommendation": "Negotiate a reasonable liability cap tied to fees paid (e.g., 12 months of fees) and ensure vendor remains liable for gross negligence and willful misconduct"
       },
       {
         "clause_type": "Indemnification",
-        "finding": "Customer must indemnify vendor for all claims, including those arising from vendor's own negligence or willful misconduct, without limitation",
+        "finding": "Customer must defend and pay for all claims against vendor, even those caused by vendor's own negligence or intentional wrongdoing",
         "risk_level": "Risky",
-        "explanation": "You must pay for and defend the vendor even when they intentionally do something wrong or are careless. This is completely unreasonable and could expose you to unlimited liability for their bad acts.",
-        "recommendation": "Reject entirely. Redraft so each party indemnifies only for their own actions. Never agree to indemnify vendor for their own negligence or willful misconduct"
+        "explanation": "You would have to pay the vendor's legal bills and damages even if the vendor deliberately harms someone or acts negligently - this is extraordinarily one-sided and could expose you to unlimited liability",
+        "recommendation": "This clause must be rewritten to be mutual and exclude indemnification for vendor's own negligence or misconduct; customer should only indemnify for claims arising from customer's own actions"
       },
       {
         "clause_type": "Termination",
-        "finding": "Vendor can terminate anytime with 5 days notice; Customer can only terminate for material breach after 90-day cure period",
+        "finding": "Vendor can terminate anytime with 5 days notice for any reason, but customer can only terminate for material breach after a 90-day cure period",
         "risk_level": "Risky",
-        "explanation": "The vendor can walk away immediately while you're locked in even if they perform poorly. This completely one-sided term gives you no flexibility while they retain total freedom.",
-        "recommendation": "Negotiate mutual termination rights: either both parties get termination for convenience (30-60 days) or both are equally restricted to termination for cause only"
+        "explanation": "The vendor can walk away with less than a week's notice leaving you scrambling for alternatives, while you're locked in even if service is poor unless you can prove material breach and wait 90 days",
+        "recommendation": "Negotiate mutual termination rights: either both parties can terminate for convenience with reasonable notice (60-90 days), or neither can except for cause"
       },
       {
         "clause_type": "Exclusivity",
-        "finding": "Customer cannot use any other vendor for similar services and must purchase exclusively from this vendor",
+        "finding": "Customer cannot use any other vendor for similar services and must buy exclusively from this vendor during the entire term",
         "risk_level": "Risky",
-        "explanation": "You're completely locked into this single vendor with no ability to use competitors, get backup services, or leverage alternative suppliers for better pricing or service.",
-        "recommendation": "Remove exclusivity entirely, or limit to specific service categories with carve-outs for existing relationships and performance benchmarks that void exclusivity"
+        "explanation": "You lose all negotiating leverage and become completely dependent on a single vendor who can raise prices 15% annually and provides terrible service with no recourse",
+        "recommendation": "Remove exclusivity clause entirely, or negotiate for it to apply only to specific services and include performance standards and price protections"
       },
       {
         "clause_type": "Governing Law",
-        "finding": "Vendor can choose the governing law and jurisdiction at the time of dispute; Customer waives objection to venue",
+        "finding": "Vendor can choose the governing law and venue at the time of any dispute, and customer waives all objections to whatever forum vendor selects",
         "risk_level": "Risky",
-        "explanation": "The vendor can force you to litigate in whatever location is most inconvenient and expensive for you, choosing the laws most favorable to them only after a dispute arises.",
-        "recommendation": "Specify a mutually agreed jurisdiction now (typically customer's headquarters state or mutual neutral location). Never allow vendor to choose forum after dispute arises"
+        "explanation": "The vendor could force you to litigate in an inconvenient or expensive jurisdiction of their choosing, potentially in a distant state or one with laws unfavorable to you, significantly increasing your legal costs and disadvantage",
+        "recommendation": "Specify a mutually agreed governing law (typically customer's state or a neutral jurisdiction) and venue in the contract itself - this should never be left to one party's discretion"
       }
     ],
     "red_flags": [
-      "Vendor liability capped at only $100 while customer has unlimited liability for vendor's own wrongdoing",
-      "Customer must indemnify vendor even for vendor's negligence and willful misconduct",
-      "24-month auto-renewal with 90-day notice period creates lock-in trap",
-      "Vendor can terminate anytime with 5 days notice while customer is essentially locked in",
-      "Vendor can unilaterally raise prices 15% annually with no termination right",
-      "Exclusivity clause prevents using any competing services",
-      "Vendor can choose governing law and venue after dispute arises"
+      "$100 total liability cap even for vendor negligence while customer has unlimited liability for vendor's misconduct",
+      "Vendor can terminate with 5 days notice but customer is locked in for 24-month auto-renewing terms",
+      "Mandatory exclusivity combined with unlimited 15% annual price increases and no termination right",
+      "Vendor can choose governing law and venue at time of dispute",
+      "Customer must indemnify vendor for vendor's own negligence and willful misconduct",
+      "90-day notice required to avoid automatic 24-month renewal"
     ],
-    "top_recommendation": "DO NOT SIGN this agreement as written. This contract is extraordinarily one-sided and exposes your company to significant financial and legal risk while providing almost no protection or flexibility. Request a complete redraft using a balanced template, or walk away and find a different vendor with reasonable standard terms."
+    "top_recommendation": "Do not sign this agreement in its current form - it requires a complete rewrite to rebalance the terms, or seek an alternative vendor with reasonable contract terms"
   },
   {
     "contract_name": "03_nda_moderate.pdf",
-    "contract_type": "Mutual Non-Disclosure Agreement (NDA)",
+    "contract_type": "Mutual Non-Disclosure Agreement",
     "overall_risk_score": 45,
     "risk_tier": "Medium",
-    "plain_english_summary": "This is a mutual NDA between Brightline Analytics and a counterparty to protect confidential information shared while exploring a business relationship. The agreement includes a broad non-solicitation clause that prevents hiring each other's employees for 2 years, and trade secrets are protected indefinitely while other confidential information is protected for 5 years.",
+    "plain_english_summary": "This is a mutual NDA between Brightline Analytics and a counterparty to protect confidential information shared while exploring a business relationship. The agreement includes standard confidentiality provisions but also contains a 2-year non-solicitation clause that restricts hiring each other's employees, which goes beyond typical NDA scope and could limit future business flexibility.",
     "clauses": [
       {
-        "clause_type": "Confidentiality Obligations",
-        "finding": "Receiving party cannot disclose confidential information to third parties and can only use it to evaluate a potential business relationship",
-        "risk_level": "Neutral",
-        "explanation": "Standard confidentiality provisions appropriate for an NDA. The limitation to evaluation purposes is normal and protects both parties equally since this is mutual.",
-        "recommendation": "Accept as written. This is standard NDA language."
-      },
-      {
-        "clause_type": "Term/Duration",
-        "finding": "Trade secrets protected indefinitely; all other confidential information protected for 5 years from disclosure",
+        "clause_type": "Confidentiality Term",
+        "finding": "Trade secrets are protected indefinitely; other confidential information is protected for 5 years from disclosure",
         "risk_level": "Risky",
-        "explanation": "Indefinite protection for trade secrets is extremely broad and creates perpetual obligations. Five years is longer than typical (2-3 years is standard). You could be bound by confidentiality restrictions forever if information qualifies as a trade secret.",
-        "recommendation": "Negotiate to limit trade secret protection to 7-10 years maximum, and reduce general confidentiality term to 3 years. Alternatively, add clear definitions of what constitutes a trade secret."
+        "explanation": "Indefinite protection for trade secrets is aggressive and open-ended. The 5-year term for other information is longer than the typical 2-3 years in standard NDAs, extending your obligations significantly.",
+        "recommendation": "Negotiate to cap trade secret protection at 5-7 years and reduce other confidential information protection to 2-3 years from disclosure date."
       },
       {
         "clause_type": "Non-Solicitation",
-        "finding": "Neither party can solicit employees they had contact with during discussions for 2 years after termination of discussions",
+        "finding": "2-year restriction on soliciting employees who had contact during discussions",
         "risk_level": "Risky",
-        "explanation": "This clause restricts your ability to hire talent for 2 years, which is long for exploratory discussions. It applies to any employee you had contact with, which could be very broad. This goes beyond typical NDA scope and limits business flexibility.",
-        "recommendation": "Push back strongly. Either remove this clause entirely (non-solicitation doesn't belong in a standard NDA), or limit it to 1 year and narrow to only 'senior executives' or employees directly involved in negotiations."
-      },
-      {
-        "clause_type": "Return of Materials",
-        "finding": "Must return or destroy all confidential information upon written request and provide written certification",
-        "risk_level": "Neutral",
-        "explanation": "Standard provision allowing either party to demand return of materials. The certification requirement ensures compliance and is common practice.",
-        "recommendation": "Accept as written. Consider adding exception for materials required to be retained by law or regulation."
-      },
-      {
-        "clause_type": "IP Ownership",
-        "finding": "No license or rights to intellectual property are granted except as expressly stated",
-        "risk_level": "Favorable",
-        "explanation": "This protects both parties by ensuring that sharing confidential information doesn't inadvertently grant IP rights. Good protective language for both sides.",
-        "recommendation": "Accept as written. This clause protects your IP."
-      },
-      {
-        "clause_type": "Remedies",
-        "finding": "Parties agree monetary damages may be inadequate and disclosing party can seek injunctive relief for breach",
-        "risk_level": "Neutral",
-        "explanation": "Standard NDA remedy allowing the injured party to seek court orders to stop disclosure rather than just money damages. This is appropriate given the nature of confidential information.",
-        "recommendation": "Accept as written. This is standard for NDAs and applies equally to both parties."
+        "explanation": "This clause prevents you from hiring the other party's employees for 2 years after discussions end, even if the business relationship doesn't materialize. This is unusual for an NDA and restricts your ability to recruit talent.",
+        "recommendation": "Request removal of this clause entirely, as it's not standard in NDAs. If the other party insists, narrow it to key employees only and reduce the period to 6-12 months."
       },
       {
         "clause_type": "Definition of Confidential Information",
-        "finding": "Covers non-public information disclosed in any form that is marked confidential or would reasonably be understood as confidential",
-        "risk_level": "Risky",
-        "explanation": "The 'reasonably be understood' standard is subjective and very broad. Almost any business information shared could potentially qualify, creating uncertainty about what you can and cannot use or discuss.",
-        "recommendation": "Add standard exceptions: publicly available information, information independently developed, information received from third parties without restriction, and information already known prior to disclosure. These carve-outs are missing and leave you exposed."
+        "finding": "Broadly defined to include information that would 'reasonably be understood' as confidential, even without marking",
+        "risk_level": "Neutral",
+        "explanation": "This definition is moderately broad and includes unmarked information that should 'reasonably' be confidential. This creates some ambiguity about what is actually covered, but is relatively standard in mutual NDAs.",
+        "recommendation": "Consider requesting that confidential information must be marked as such or identified in writing within 10 days of disclosure to reduce ambiguity."
+      },
+      {
+        "clause_type": "Use Restriction",
+        "finding": "Confidential information can only be used for evaluating a potential business relationship",
+        "risk_level": "Neutral",
+        "explanation": "This is a standard limitation that restricts use to the specific purpose of evaluating whether to do business together. It's appropriate for an NDA at the exploratory stage.",
+        "recommendation": "No change needed; this is standard and protects both parties appropriately."
+      },
+      {
+        "clause_type": "Return of Materials",
+        "finding": "Must return or destroy all confidential information upon written request with written certification",
+        "risk_level": "Neutral",
+        "explanation": "Standard provision requiring you to give back or destroy confidential materials when asked and confirm you've done so. This is typical and reasonable for NDAs.",
+        "recommendation": "No change needed, but ensure you have processes in place to comply with this requirement if requested."
+      },
+      {
+        "clause_type": "IP Ownership",
+        "finding": "No license or rights to intellectual property are granted under this agreement",
+        "risk_level": "Favorable",
+        "explanation": "This clarifies that sharing information doesn't give either party rights to the other's intellectual property. This protects your IP from any implied license claims.",
+        "recommendation": "No change needed; this clause protects you."
+      },
+      {
+        "clause_type": "Remedies",
+        "finding": "Disclosing party can seek injunctive relief for breaches, acknowledging monetary damages may be inadequate",
+        "risk_level": "Neutral",
+        "explanation": "This allows either party to get a court order to stop breaches quickly, rather than just suing for money damages. This is standard for NDAs where speed matters in stopping disclosure.",
+        "recommendation": "No change needed; this is mutual and standard for protecting confidential information."
       }
     ],
     "red_flags": [
-      "Indefinite confidentiality obligation for trade secrets with no time limit or clear definition",
-      "2-year non-solicitation clause that is overly broad and unusually long for preliminary discussions",
-      "Missing standard exceptions to confidential information (public domain, independently developed, etc.)",
-      "No termination provision - unclear how to exit the agreement",
-      "Effective date is March 3, 2026 (future date - likely error)"
+      "Indefinite confidentiality protection for trade secrets with no time cap",
+      "2-year non-solicitation clause that restricts employee hiring, which is unusual and overly broad for a basic NDA",
+      "5-year confidentiality term is longer than industry standard 2-3 years"
     ],
-    "top_recommendation": "Negotiate to add standard exceptions to the definition of Confidential Information (publicly available, independently developed, lawfully obtained from third parties, previously known) and either remove the non-solicitation clause entirely or significantly narrow its scope to senior executives only for 1 year maximum."
+    "top_recommendation": "Negotiate to remove or significantly narrow the non-solicitation clause (Section 4), as it extends beyond the normal scope of an NDA and could meaningfully restrict your hiring options for 2 years even if no business relationship develops."
   },
   {
     "contract_name": "04_consulting_clean.pdf",
     "contract_type": "Professional Consulting Agreement",
     "overall_risk_score": 25,
     "risk_tier": "Low",
-    "plain_english_summary": "This is a straightforward consulting agreement between Meridian Advisory Group and a customer for advisory services. The contract includes balanced terms with reasonable protections for both parties, flexible termination rights, and clear ownership of work product upon payment. The main limitations are a liability cap tied to fees paid and standard confidentiality obligations.",
+    "plain_english_summary": "This is a standard consulting agreement between Meridian Advisory Group and a customer for advisory services. The contract is balanced and reasonable, with fair payment terms, mutual liability caps, clear IP ownership transfer upon payment, and straightforward termination rights for both parties.",
     "clauses": [
       {
-        "clause_type": "Scope of Services",
-        "finding": "Services defined in individual Statements of Work with changes requiring written mutual agreement",
-        "risk_level": "Neutral",
-        "explanation": "Provides flexibility through SOWs while protecting against scope creep by requiring written approval for changes",
-        "recommendation": "Ensure each SOW clearly details deliverables, timelines, and acceptance criteria before signing"
-      },
-      {
-        "clause_type": "Fees/Payment",
-        "finding": "Net 30 payment terms with 15-day dispute window for invoices",
-        "risk_level": "Favorable",
-        "explanation": "Standard payment terms with a reasonable dispute mechanism that allows challenges to incorrect billing",
-        "recommendation": "Establish clear invoice review procedures to utilize the 15-day dispute window effectively"
-      },
-      {
         "clause_type": "Termination",
-        "finding": "Either party can terminate for convenience with 30 days written notice, payment only for services rendered",
+        "finding": "Either party may terminate for convenience with 30 days written notice; customer pays only for services rendered through termination date.",
         "risk_level": "Favorable",
-        "explanation": "Provides exit flexibility without penalty, allowing termination if the relationship isn't working with minimal financial exposure",
-        "recommendation": "No action needed; this is a business-friendly term that limits commitment risk"
+        "explanation": "This gives both sides flexibility to exit the relationship without penalty, and the customer only pays for work actually completed. This is very fair and protects against being locked into an unsatisfactory arrangement.",
+        "recommendation": "No changes needed. This is a customer-friendly termination clause."
       },
       {
         "clause_type": "Limitation of Liability",
-        "finding": "Liability capped at fees paid in preceding 12 months, no liability for indirect or consequential damages",
+        "finding": "Liability capped at fees paid in the preceding 12 months under the applicable SOW; no indirect or consequential damages for either party.",
         "risk_level": "Neutral",
-        "explanation": "Mutual liability cap limits exposure for both parties but may restrict recovery if consultant's advice causes significant business harm",
-        "recommendation": "Consider whether potential damages from poor advice could exceed 12 months of fees; if so, negotiate higher cap or obtain professional liability insurance coverage"
+        "explanation": "The cap is mutual and reasonable for a consulting relationship. Both parties are protected from catastrophic claims, but the customer's recovery is limited if the consultant makes a serious error.",
+        "recommendation": "Consider whether the 12-month fee cap provides adequate protection given the nature of the advisory services. For high-stakes strategic advice, you may want a higher cap."
       },
       {
-        "clause_type": "IP Ownership",
-        "finding": "Customer owns work product created under SOW upon full payment; consultant retains pre-existing materials and methodologies",
+        "clause_type": "Intellectual Property",
+        "finding": "Customer owns work product created specifically under an SOW upon full payment; consultant retains pre-existing materials and general methodologies.",
         "risk_level": "Favorable",
-        "explanation": "Clear ownership structure ensures you own what you pay for while consultant keeps their reusable tools and knowledge",
-        "recommendation": "In each SOW, specifically identify any pre-existing consultant materials to avoid disputes about what is 'new' work product"
+        "explanation": "The customer gets ownership of the deliverables they pay for, which is appropriate. The consultant keeps their proprietary tools and frameworks, which is also standard and fair.",
+        "recommendation": "Ensure each SOW clearly defines what constitutes 'work product' versus 'pre-existing materials' to avoid disputes."
       },
       {
         "clause_type": "Confidentiality",
-        "finding": "Mutual confidentiality obligation for 3 years using reasonable care",
+        "finding": "Both parties must keep confidential information secret for 3 years after disclosure using reasonable care.",
         "risk_level": "Neutral",
-        "explanation": "Standard protection for sensitive business information shared during the engagement with adequate duration",
-        "recommendation": "Clearly mark confidential materials and ensure consultant signs appropriate NDAs for highly sensitive information"
+        "explanation": "The 3-year term is standard for consulting agreements. The mutual obligation protects both parties' sensitive business information.",
+        "recommendation": "Consider whether 3 years is sufficient for highly sensitive strategic information, or if certain information should remain confidential indefinitely."
+      },
+      {
+        "clause_type": "Fees/Payment",
+        "finding": "Fees specified in SOW; invoices due net 30 days; either party may dispute invoice within 15 days.",
+        "risk_level": "Favorable",
+        "explanation": "Payment terms are standard and reasonable. The 15-day dispute window protects both parties from billing errors or disagreements.",
+        "recommendation": "No changes needed. Ensure SOWs clearly specify fee structures, payment schedules, and any expense reimbursement terms."
+      },
+      {
+        "clause_type": "Scope of Services",
+        "finding": "Services defined in mutually agreed Statements of Work; scope changes require written agreement of both parties.",
+        "risk_level": "Favorable",
+        "explanation": "This protects the customer from scope creep and unexpected charges, while giving both parties control over changes to the engagement.",
+        "recommendation": "Ensure each SOW is detailed and specific about deliverables, timelines, and acceptance criteria to minimize disputes."
       },
       {
         "clause_type": "Governing Law",
-        "finding": "Governed by New York State law",
+        "finding": "Agreement governed by New York state law.",
         "risk_level": "Neutral",
-        "explanation": "Establishes predictable legal framework; New York law is well-developed for commercial contracts",
-        "recommendation": "Verify this is acceptable for your business location; negotiate if litigating in New York would be burdensome"
+        "explanation": "New York law is well-established for commercial contracts. This clause determines which state's laws apply if there's a dispute.",
+        "recommendation": "Confirm that New York law is acceptable; if your business is located elsewhere, consider negotiating for your home state's law or adding a venue clause."
       }
     ],
     "red_flags": [],
-    "top_recommendation": "This is a clean, balanced consulting agreement with minimal risk. Proceed with focus on ensuring each Statement of Work contains specific deliverables, timelines, and success criteria to avoid scope disputes."
+    "top_recommendation": "This is a clean, balanced consulting agreement with minimal risk. Proceed with ensuring that each Statement of Work clearly defines scope, deliverables, fees, and what constitutes customer-owned work product versus consultant's pre-existing materials."
   },
   {
     "contract_name": "05_license_moderate.pdf",
     "contract_type": "Software License Agreement",
-    "overall_risk_score": 52,
+    "overall_risk_score": 58,
     "risk_tier": "Medium",
-    "plain_english_summary": "This is a standard annual software license with auto-renewal that requires advance payment and includes some favorable IP protections. Key concerns include immediate termination rights for the vendor, customer-paid audits if underpayment exceeds 5%, and no warranties on software quality or fitness for purpose.",
+    "plain_english_summary": "This is a standard software license agreement with automatic annual renewals that allows Quanta Systems to audit your software usage at your expense if underpayment exceeds 5%. The vendor's financial liability is capped at one year of fees, and they provide limited protection against intellectual property claims but no guarantees the software will work as expected.",
     "clauses": [
       {
         "clause_type": "License Grant",
-        "finding": "Non-exclusive, non-transferable license restricted to internal business use only, with no sublicensing or assignment without written consent",
+        "finding": "Non-exclusive, non-transferable license limited to internal business use only, with restrictions on sublicensing and assignment without written consent",
         "risk_level": "Neutral",
-        "explanation": "Standard restrictions for software licenses that prevent you from sharing or reselling the software, but reasonable for most business uses",
-        "recommendation": "Confirm internal use definition covers all intended locations and subsidiaries if applicable"
+        "explanation": "Standard license restrictions for business software. You can use it internally but cannot share, resell, or transfer it without permission, which is typical for most enterprise software.",
+        "recommendation": "Ensure 'internal business use' is defined broadly enough to cover all intended uses including contractors and subsidiaries if applicable."
       },
       {
-        "clause_type": "Fees and Audit",
-        "finding": "Annual fee paid in advance; vendor can audit with 10 days notice, and customer pays audit costs if underpayment exceeds 5%",
+        "clause_type": "Fees and Audit Rights",
+        "finding": "Annual fees paid in advance; vendor may audit usage with 10 days notice, and customer pays audit costs if underpayment exceeds 5%",
         "risk_level": "Risky",
-        "explanation": "You must pay audit costs even for small mistakes over 5%, which can be expensive and disruptive with only 10 days notice",
-        "recommendation": "Negotiate a higher threshold (10-15%) before you pay audit costs and extend notice period to 30 days"
+        "explanation": "You could be stuck paying for an expensive audit conducted by the vendor's chosen auditor if there's even a small discrepancy. The 5% threshold is relatively low and the 10-day notice period is short.",
+        "recommendation": "Negotiate to raise the threshold to 10% underpayment, extend notice period to 30 days, cap audit frequency to once per year, and specify that you only pay audit costs if underpayment exceeds 10%."
       },
       {
         "clause_type": "Auto-Renewal",
-        "finding": "Automatically renews for successive one-year terms unless either party gives 60 days written notice",
-        "risk_level": "Neutral",
-        "explanation": "Standard auto-renewal with reasonable notice period, but requires tracking to avoid unwanted renewal",
-        "recommendation": "Set calendar reminders at 90 days before each anniversary to evaluate continuation"
+        "finding": "Automatic renewal for successive one-year terms unless either party provides 60 days written notice of non-renewal",
+        "risk_level": "Risky",
+        "explanation": "The agreement will automatically renew every year unless you remember to cancel 60 days before the anniversary date. Missing this deadline locks you in for another full year of fees even if you no longer need the software.",
+        "recommendation": "Set calendar reminders for 90 days before renewal date. Consider negotiating for a longer notice period (90 days) or requesting written renewal reminders from vendor 90 days before each renewal."
       },
       {
         "clause_type": "Limitation of Liability",
         "finding": "Vendor liability capped at fees paid in prior 12 months; software provided 'as is' without any warranties",
         "risk_level": "Risky",
-        "explanation": "If the software fails or causes business losses, you can only recover the annual fee you paid, and vendor promises nothing about quality or functionality",
-        "recommendation": "Request at minimum a warranty that software will perform materially as documented and negotiate a higher liability cap for critical systems"
+        "explanation": "If the software fails, causes data loss, or creates business disruption, the most you can recover is one year of license fees. No guarantee the software will work properly, be secure, or meet your needs.",
+        "recommendation": "Negotiate for at least limited warranties regarding functionality and performance. Request Service Level Agreements (SLAs) with specific uptime guarantees. Consider requiring higher liability caps for data loss or security breaches."
       },
       {
         "clause_type": "Termination",
-        "finding": "Vendor can terminate immediately for breach of license scope or non-payment; customer must delete all software and certify deletion",
+        "finding": "Licensor may terminate immediately for breach of license scope or non-payment; customer must cease use and certify deletion",
         "risk_level": "Risky",
-        "explanation": "Immediate termination without cure period means you could lose access to critical software suddenly if there's a dispute or payment issue",
-        "recommendation": "Negotiate a 30-day cure period for breaches and ensure data extraction rights before termination becomes effective"
+        "explanation": "The vendor can shut you down immediately without notice or cure period if they claim you breached the agreement, potentially disrupting your business operations with no transition time.",
+        "recommendation": "Negotiate for a 30-day cure period for breaches (except non-payment) and a reasonable transition period after termination to migrate to alternative software. Clarify what constitutes a breach of 'license scope'."
       },
       {
         "clause_type": "Indemnification",
-        "finding": "Vendor will defend customer against third-party IP infringement claims if customer notifies promptly and cooperates",
+        "finding": "Licensor indemnifies customer against third-party IP infringement claims if customer provides prompt notice and cooperation",
         "risk_level": "Favorable",
-        "explanation": "Vendor protects you if someone claims the software violates their intellectual property rights, which is important protection",
-        "recommendation": "Verify there are no carve-outs or exceptions that would exclude coverage; consider adding vendor obligation to replace infringing software"
+        "explanation": "The vendor will defend you and cover costs if someone sues claiming the software violates their patents or copyrights. This protects you from legal liability for using their product.",
+        "recommendation": "Verify there are no carve-outs that would exclude indemnification. Ensure your notification and cooperation obligations are clearly defined and reasonable."
       },
       {
         "clause_type": "Governing Law",
-        "finding": "Agreement governed by California state law",
+        "finding": "Agreement governed by California law",
         "risk_level": "Neutral",
-        "explanation": "California law is generally balanced and business-friendly; only a concern if you're located far from California and disputes would require travel",
-        "recommendation": "Consider negotiating for your home state jurisdiction if California is inconvenient for dispute resolution"
+        "explanation": "Any legal disputes will be resolved under California state law, which may require travel and use of California-based attorneys if litigation occurs.",
+        "recommendation": "If your business is located outside California, consider negotiating for your home state's law or mutual venue selection. Ensure you have access to California legal counsel if needed."
       }
     ],
     "red_flags": [
-      "No warranties provided - software is 'as is' with no guarantee it will work for your needs",
-      "Immediate termination without cure period could disrupt critical business operations",
-      "Customer pays for audits if underpayment exceeds just 5%, creating potential for expensive surprise costs",
-      "Liability cap limits recovery to only one year of fees even for major failures or data loss"
+      "Automatic annual renewal with only 60-day cancellation window could trap you in unwanted contract",
+      "Customer must pay for vendor audits if underpayment exceeds just 5%, with only 10 days notice",
+      "Immediate termination allowed without cure period for alleged breach",
+      "Software provided 'as is' with no warranties and liability capped at only 12 months of fees",
+      "Advance annual payment required with no refund provisions mentioned"
     ],
-    "top_recommendation": "Negotiate a 30-day cure period before termination and add minimum warranties that the software will substantially conform to its documentation and be free of material defects"
+    "top_recommendation": "Negotiate a 30-day cure period for termination, increase the audit threshold to 10%, and add a 90-day renewal reminder obligation on the vendor to avoid automatic lock-in."
+  },
+  {
+    "contract_name": "06_employment_moderate.pdf",
+    "contract_type": "Employment Agreement",
+    "overall_risk_score": 72,
+    "risk_tier": "High",
+    "plain_english_summary": "This is a full-time Marketing Manager employment agreement with a $78,000 salary and at-will employment. The contract contains an extremely broad 24-month non-compete covering the entire United States in any capacity, which is likely unenforceable in most states and presents significant career risk. The IP assignment and indefinite confidentiality obligations are also unusually broad.",
+    "clauses": [
+      {
+        "clause_type": "Termination",
+        "finding": "Employment is at-will and may be terminated by either party at any time",
+        "risk_level": "Neutral",
+        "explanation": "At-will employment is standard in the U.S. and means either party can end the relationship at any time for any lawful reason, providing flexibility but no job security",
+        "recommendation": "This is typical; consider negotiating a severance package to provide some protection if terminated"
+      },
+      {
+        "clause_type": "Compensation",
+        "finding": "$78,000 annual salary with discretionary bonus determined solely by Company",
+        "risk_level": "Neutral",
+        "explanation": "The salary is fixed but the bonus is entirely at the Company's discretion with no performance metrics or minimum amounts specified",
+        "recommendation": "Request clarification on bonus criteria, typical amounts, or past payout history to understand true compensation potential"
+      },
+      {
+        "clause_type": "Confidentiality",
+        "finding": "Employee must keep all trade secrets and customer information confidential indefinitely, during and after employment",
+        "risk_level": "Risky",
+        "explanation": "The indefinite timeframe and broad scope covering 'all' information without defining what qualifies as confidential could restrict future employment options unnecessarily",
+        "recommendation": "Negotiate to limit confidentiality to true trade secrets and proprietary information, and specify reasonable time limits post-employment"
+      },
+      {
+        "clause_type": "Non-Compete",
+        "finding": "24-month nationwide ban on working for any competitor in any capacity after termination",
+        "risk_level": "Risky",
+        "explanation": "This is extremely broad and likely unenforceable in many states. It could prevent you from working in your profession anywhere in the U.S. for two years, which is unreasonable for a Marketing Manager role. Many courts will not enforce overly broad non-competes",
+        "recommendation": "Strongly negotiate to narrow this: reduce duration to 6-12 months, limit geographic scope to reasonable territories, and restrict only to similar roles with direct competitors. Consider seeking legal counsel before signing"
+      },
+      {
+        "clause_type": "Non-Solicitation",
+        "finding": "24-month restriction on soliciting Company employees or customers",
+        "risk_level": "Risky",
+        "explanation": "While non-solicitation clauses are more enforceable than non-competes, 24 months is on the long side and could limit networking and business development in your next role",
+        "recommendation": "Negotiate to reduce to 12 months and clarify that it only applies to active solicitation, not responding to inquiries or general networking"
+      },
+      {
+        "clause_type": "IP Assignment",
+        "finding": "All inventions, ideas, and works created during employment belong exclusively to the Company",
+        "risk_level": "Risky",
+        "explanation": "This is overly broad as written—it could claim ownership of anything you create during employment, even personal projects on your own time unrelated to Company business",
+        "recommendation": "Negotiate to limit IP assignment to work created within the scope of employment, using Company resources, or related to Company business. Exclude personal projects and pre-existing IP"
+      },
+      {
+        "clause_type": "Governing Law",
+        "finding": "Agreement governed by Delaware law",
+        "risk_level": "Neutral",
+        "explanation": "Delaware is a common choice for governing law. However, the enforceability of restrictive covenants will depend on where you actually work and where the Company seeks to enforce them",
+        "recommendation": "Verify this choice of law doesn't disadvantage you compared to your state's laws, particularly regarding non-compete enforceability"
+      }
+    ],
+    "red_flags": [
+      "Extremely broad 24-month nationwide non-compete in any capacity is likely unenforceable and creates severe career restrictions",
+      "IP assignment clause claims all inventions and ideas during employment without limiting to work-related creations",
+      "Indefinite confidentiality obligation covering 'all' Company information without proper definitions",
+      "No severance protection despite at-will employment combined with harsh restrictive covenants",
+      "Bonus is entirely discretionary with no performance metrics or guarantees"
+    ],
+    "top_recommendation": "Do not sign this agreement without significant modifications to the non-compete clause. Negotiate to narrow the geographic scope, reduce the duration to 6-12 months maximum, and limit it to direct competitor roles only. Also revise the IP assignment to exclude personal projects. Consider having an employment attorney review before signing."
+  },
+  {
+    "contract_name": "07_commercial_lease_risky.pdf",
+    "contract_type": "Commercial Lease Agreement",
+    "overall_risk_score": 82,
+    "risk_tier": "High",
+    "plain_english_summary": "This is a 5-year retail lease with extremely landlord-favorable terms that expose the tenant to significant financial risk. The tenant faces automatic 8% annual rent increases, personal liability for all lease obligations, responsibility for all building repairs including structural items, and harsh default penalties including immediate payment of all remaining rent for the entire term. These terms are highly unusual and create substantial ongoing financial exposure.",
+    "clauses": [
+      {
+        "clause_type": "Rent Escalation",
+        "finding": "Base rent increases 8% annually with triple net expenses (taxes, insurance, maintenance) passed through to tenant",
+        "risk_level": "Risky",
+        "explanation": "An 8% annual increase is exceptionally high and compounds aggressively—rent will nearly double over 5 years. Combined with triple net obligations, the tenant's occupancy costs become increasingly unpredictable and burdensome.",
+        "recommendation": "Negotiate a lower escalation rate (2-3% is standard) or cap annual increases at CPI. Consider requesting a gross or modified gross lease structure to limit exposure to operating expense increases."
+      },
+      {
+        "clause_type": "Auto-Renewal",
+        "finding": "Lease automatically renews for successive 5-year terms unless tenant provides 12 months written notice before expiration",
+        "risk_level": "Risky",
+        "explanation": "The 12-month notice requirement is extremely aggressive and creates a trap for unwary tenants. Missing this deadline locks you into another 5 years with continued 8% annual increases and all other onerous terms.",
+        "recommendation": "Negotiate to reduce notice period to 6 months or eliminate auto-renewal entirely, requiring mutual written agreement to extend. Set calendar reminders immediately if this clause remains."
+      },
+      {
+        "clause_type": "Personal Guarantee",
+        "finding": "Individual signing for tenant personally guarantees all lease obligations including full remaining rent upon default",
+        "risk_level": "Risky",
+        "explanation": "This puts the business owner's personal assets—home, savings, investments—at risk if the business fails or cannot meet lease obligations. The guarantee covers the entire remaining term value, potentially hundreds of thousands of dollars.",
+        "recommendation": "Negotiate to eliminate the personal guarantee, limit it to a specific dollar amount, or include a 'burn-off' provision that releases the guarantee after timely payments for 2-3 years."
+      },
+      {
+        "clause_type": "Repairs and Maintenance",
+        "finding": "Tenant is solely responsible for ALL repairs and replacements including roof, structure, HVAC, and plumbing regardless of cause",
+        "risk_level": "Risky",
+        "explanation": "This is an absolute net lease placing extraordinary burden on tenant. Normally landlords maintain structural elements and building systems. A major roof or HVAC replacement could cost $50,000-$200,000+ and tenant has no control over building age or condition.",
+        "recommendation": "This is unacceptable for most tenants. Negotiate that landlord retains responsibility for structural, roof, and major building systems. At minimum, request a maintenance reserve or cap on tenant's annual repair obligations."
+      },
+      {
+        "clause_type": "Default and Acceleration",
+        "finding": "Upon any default, entire remaining rent for full term becomes immediately due; landlord may retain security deposit and re-enter without notice",
+        "risk_level": "Risky",
+        "explanation": "Acceleration clauses making all future rent immediately due are harsh and potentially unenforceable in some states, but create massive liability exposure. No notice requirement violates tenant rights in many jurisdictions and could result in loss of business property and inventory.",
+        "risk_recommendation": "Negotiate a cure period (typically 10-30 days) for monetary defaults and reasonable notice before re-entry. Request that acceleration clause be removed or that landlord's remedy be limited to actual damages (duty to mitigate by re-leasing)."
+      },
+      {
+        "clause_type": "Limitation of Liability",
+        "finding": "Landlord has no liability for any damage to tenant's property or business interruption for any reason",
+        "risk_level": "Risky",
+        "explanation": "This completely shields the landlord even from their own negligence. If landlord's failure to maintain common areas causes flood damage, fire, or forces closure, tenant has no recourse and still owes full rent.",
+        "recommendation": "Negotiate to carve out landlord liability for gross negligence and willful misconduct. Ensure lease includes rent abatement provisions if premises become unusable due to casualty or landlord actions."
+      },
+      {
+        "clause_type": "Governing Law and Venue",
+        "finding": "New York law applies with venue in a county chosen by landlord",
+        "risk_level": "Risky",
+        "explanation": "Allowing landlord to unilaterally choose venue means tenant could be forced to defend lawsuits in a distant or inconvenient location, increasing legal costs and making defense impractical.",
+        "recommendation": "Negotiate that venue be fixed in the county where the property is located or where tenant's principal place of business is located. This is a standard and reasonable request."
+      },
+      {
+        "clause_type": "Termination Rights",
+        "finding": "No early termination rights for tenant; landlord retains re-entry rights without notice upon any default",
+        "risk_level": "Risky",
+        "explanation": "Tenant is locked in for the full term with no exit options even if business fails or circumstances change drastically. The asymmetry—landlord can terminate immediately while tenant cannot—creates severe imbalance.",
+        "recommendation": "Negotiate an early termination option (e.g., after year 3 with 6 months notice and termination fee of 3-6 months rent). Include co-tenancy or go-dark provisions if in a shopping center."
+      }
+    ],
+    "red_flags": [
+      "8% annual rent increase is exceptionally high and will nearly double rent over the term",
+      "Personal guarantee exposes individual's personal assets to liability for entire remaining lease term",
+      "Tenant responsible for ALL repairs including structural and building systems—should be landlord's obligation",
+      "Acceleration clause making all future rent immediately due upon any default creates catastrophic exposure",
+      "12-month notice required to avoid auto-renewal into another 5-year term is a trap for unwary tenants",
+      "No cure period or notice required before landlord re-entry—tenant could lose access to business and inventory immediately",
+      "Complete limitation of landlord liability even for their own negligence is unconscionable",
+      "Landlord unilaterally chooses venue for disputes, potentially forcing litigation in distant locations"
+    ],
+    "top_recommendation": "Do not sign this lease without substantial revisions. Engage a commercial real estate attorney immediately to negotiate: (1) elimination or substantial limitation of the personal guarantee, (2) reduction of rent escalation to 2-3% annually, (3) shifting structural and major system repairs back to landlord, (4) adding cure periods and notice requirements for defaults, and (5) reducing auto-renewal notice to 6 months. These terms expose you to potentially ruinous financial liability."
+  },
+  {
+    "contract_name": "08_influencer_moderate.pdf",
+    "contract_type": "Influencer Collaboration Agreement",
+    "overall_risk_score": 58,
+    "risk_tier": "Medium",
+    "plain_english_summary": "This is an influencer marketing contract where a creator agrees to make 4 Instagram posts and 8 stories for $5,000. The brand gets to own and reuse all content forever, the influencer cannot work with competitors for 6 months after the agreement ends, and the brand has unlimited revision rights before content is posted.",
+    "clauses": [
+      {
+        "clause_type": "Content Rights / IP Ownership",
+        "finding": "Brand receives perpetual, worldwide, royalty-free license to use, edit, and repurpose all content across all media forever, including paid advertising",
+        "risk_level": "Risky",
+        "explanation": "The creator loses control of their content permanently with no additional compensation, even if the brand uses it in major paid advertising campaigns that could be worth far more than the $5,000 fee",
+        "recommendation": "Negotiate for limited license duration (1-2 years), exclude paid advertising or require additional fees for paid use, or increase base compensation significantly to reflect perpetual usage rights"
+      },
+      {
+        "clause_type": "Exclusivity",
+        "finding": "Creator cannot promote competing brands during the term and for 6 months after agreement ends",
+        "risk_level": "Risky",
+        "explanation": "The 6-month post-termination restriction limits the creator's ability to earn income from other brands in the same category even after the relationship ends, which is particularly restrictive for a short 60-day project",
+        "recommendation": "Negotiate to remove post-termination exclusivity or reduce it to 30-60 days, or request additional compensation for the extended non-compete period"
+      },
+      {
+        "clause_type": "Approval / Revision Rights",
+        "finding": "All content must be approved by Brand before posting and Brand may request unlimited revisions",
+        "risk_level": "Risky",
+        "explanation": "Unlimited revision requests with no cap could lead to endless work cycles without additional pay, creating scope creep and potentially making the project unprofitable for the creator",
+        "recommendation": "Add a revision cap (e.g., 2-3 rounds of revisions per post) and specify that additional revisions beyond that require extra compensation or mutual agreement"
+      },
+      {
+        "clause_type": "Fees / Payment",
+        "finding": "$5,000 total compensation split 50% on signing and 50% on completion",
+        "risk_level": "Neutral",
+        "explanation": "Payment structure is fairly standard with half upfront, though the creator bears some risk if the relationship sours before completion. The amount should be evaluated against market rates and the perpetual content rights granted",
+        "recommendation": "Consider negotiating milestone-based payments (25% signing, 25% after first 2 posts, 50% completion) to reduce risk, and verify the fee is appropriate given the perpetual license granted"
+      },
+      {
+        "clause_type": "Termination",
+        "finding": "Either party may terminate with 14 days written notice; fees for completed work remain payable",
+        "risk_level": "Neutral",
+        "explanation": "Termination clause is reasonably balanced allowing either party to exit with notice, and ensures creator is paid for work completed. However, exclusivity continues for 6 months even after termination",
+        "recommendation": "Clarify that exclusivity clause does not apply if Brand terminates without cause, or negotiate shorter exclusivity period post-termination"
+      },
+      {
+        "clause_type": "Disclosure / FTC Compliance",
+        "finding": "Creator must comply with FTC disclosure requirements and tag posts as #ad",
+        "risk_level": "Favorable",
+        "explanation": "This clause protects both parties by ensuring legal compliance with advertising disclosure laws, reducing regulatory risk for both the creator and brand",
+        "recommendation": "No changes needed; this is a standard and necessary protection"
+      },
+      {
+        "clause_type": "Governing Law",
+        "finding": "Governed by the laws of the State of California",
+        "risk_level": "Neutral",
+        "explanation": "California law will govern disputes. This may favor the creator in some respects as California tends to be employee/contractor-friendly, but could be inconvenient if the creator is based elsewhere",
+        "recommendation": "If creator is not based in California, consider negotiating for their home state or adding alternative dispute resolution provisions"
+      },
+      {
+        "clause_type": "Limitation of Liability",
+        "finding": "No limitation of liability clause present",
+        "risk_level": "Risky",
+        "explanation": "Without a liability cap, the creator could potentially be liable for unlimited damages if something goes wrong, such as copyright claims on content or FTC violations",
+        "recommendation": "Add a mutual limitation of liability clause capping damages at the contract value or a reasonable multiple thereof, with exceptions only for willful misconduct"
+      },
+      {
+        "clause_type": "Indemnification",
+        "finding": "No indemnification clause present",
+        "risk_level": "Neutral",
+        "explanation": "The absence of an indemnification clause is actually somewhat favorable to the creator, as brands often include one-sided indemnification requiring creators to defend the brand against all claims. However, this also means neither party has explicit protection",
+        "recommendation": "If Brand requests adding indemnification, ensure it is mutual and limited in scope, excluding Brand's own negligence or misuse of content"
+      }
+    ],
+    "red_flags": [
+      "Perpetual, worldwide content license with no additional compensation for paid advertising use significantly undervalues creator's work",
+      "6-month post-termination exclusivity clause restricts future income opportunities even after the short 60-day engagement ends",
+      "Unlimited revision rights with no cap creates risk of endless unpaid work and scope creep",
+      "No limitation of liability exposes creator to potentially unlimited damages"
+    ],
+    "top_recommendation": "Negotiate the content rights clause to either limit the license duration to 1-2 years, exclude paid advertising without additional fees, or significantly increase compensation to reflect the perpetual worldwide usage rights being granted"
+  },
+  {
+    "contract_name": "09_freelance_webdev_clean.pdf",
+    "contract_type": "Freelance Web Development Agreement",
+    "overall_risk_score": 25,
+    "risk_tier": "Low",
+    "plain_english_summary": "This is a straightforward freelance web development contract for a $7,500 fixed-price marketing website. The terms are balanced and fair to both parties, with clear payment milestones, IP transfer upon payment, and reasonable liability protections. The main risks are minor and typical for this type of engagement.",
+    "clauses": [
+      {
+        "clause_type": "Fees and Payment",
+        "finding": "Fixed fee of $7,500 split into three milestones: 30% deposit, 40% at design approval, 30% at launch. Payment due within 15 days of invoice.",
+        "risk_level": "Favorable",
+        "explanation": "Payment structure protects both parties with milestone-based payments tied to deliverables. The 15-day payment window is reasonable and standard.",
+        "recommendation": "Ensure invoices are sent promptly at each milestone and track payment deadlines to maintain cash flow."
+      },
+      {
+        "clause_type": "IP Ownership",
+        "finding": "Custom code and designs transfer to Client upon full payment. Developer keeps rights to general know-how and reusable libraries.",
+        "risk_level": "Favorable",
+        "explanation": "Clear IP transfer protects the Client's investment while allowing the Developer to retain their tools and general knowledge. Payment-contingent transfer is standard.",
+        "recommendation": "Ensure final payment is made promptly to secure full IP rights. Request clarification on what constitutes 'reusable libraries' if concerned."
+      },
+      {
+        "clause_type": "Limitation of Liability",
+        "finding": "Liability capped at total fees paid ($7,500). No liability for indirect or consequential damages for either party.",
+        "risk_level": "Neutral",
+        "explanation": "Standard protection limiting financial exposure to the contract value. Reasonable for a small fixed-price project, though it means you cannot recover more than $7,500 if something goes wrong.",
+        "recommendation": "Accept as-is for a project of this size. Consider insurance if the website is mission-critical to your business operations."
+      },
+      {
+        "clause_type": "Termination",
+        "finding": "Either party can terminate with 14 days notice. Client must pay for work completed to date.",
+        "risk_level": "Favorable",
+        "explanation": "Balanced termination clause allows exit flexibility while protecting the Developer from non-payment for work performed. Two weeks notice is reasonable.",
+        "recommendation": "Keep this clause as-is. It provides good flexibility if the relationship isn't working while ensuring fair compensation."
+      },
+      {
+        "clause_type": "Revisions",
+        "finding": "Two rounds of revisions per page included; additional revisions billed at $90/hour with mutual agreement.",
+        "risk_level": "Neutral",
+        "explanation": "Clear revision limit prevents scope creep. Hourly rate for extra work is transparent and requires agreement from both parties before proceeding.",
+        "recommendation": "Plan feedback carefully to stay within the two revision rounds. Consolidate comments to maximize value from included revisions."
+      },
+      {
+        "clause_type": "Timeline",
+        "finding": "6-week estimated timeline from deposit. Timeline extends if Client feedback is delayed.",
+        "risk_level": "Neutral",
+        "explanation": "Reasonable timeline with built-in protection for the Developer if the Client is slow to respond. 'Estimated' means it's not a hard deadline.",
+        "recommendation": "If launch date is critical, request a firm deadline with penalties, or at minimum define 'late feedback' more specifically (e.g., responses within 3 business days)."
+      },
+      {
+        "clause_type": "Governing Law",
+        "finding": "Contract governed by Texas state law.",
+        "risk_level": "Neutral",
+        "explanation": "Standard governing law clause. Only a concern if you are located far from Texas and disputes would require legal action there.",
+        "recommendation": "Accept if both parties are in or near Texas. If you're in a different state, consider negotiating for your home state or neutral jurisdiction."
+      }
+    ],
+    "red_flags": [
+      "No specific warranty or quality standards defined for the deliverables",
+      "Timeline is estimated only, not a firm deadline with consequences for delays",
+      "No explicit confidentiality or NDA provisions to protect sensitive business information"
+    ],
+    "top_recommendation": "Add a confidentiality clause to protect any proprietary business information, strategies, or data shared during the project, and clarify what 'reusable libraries' means in the IP clause to avoid future disputes."
+  },
+  {
+    "contract_name": "10_loan_risky.pdf",
+    "contract_type": "Business Loan Agreement",
+    "overall_risk_score": 92,
+    "risk_tier": "High",
+    "plain_english_summary": "This is an extremely predatory business loan agreement with multiple abusive terms that heavily favor the lender. The contract contains a confession of judgment clause allowing the lender to take judgment against you without a court hearing, punitive default interest rates of nearly 30%, and harsh acceleration clauses. The borrower has almost no protections and faces severe personal liability.",
+    "clauses": [
+      {
+        "clause_type": "Interest Rate and Default Interest",
+        "finding": "18% annual interest rate that jumps to 29.99% upon any default",
+        "risk_level": "Risky",
+        "explanation": "The base rate is high, and the default rate of nearly 30% is extremely punitive and potentially usurious. Any missed payment triggers this massive rate increase, dramatically increasing what you owe.",
+        "recommendation": "Negotiate a lower base rate and cap default interest at no more than 2-3% above the base rate. Confirm the rates comply with state usury laws."
+      },
+      {
+        "clause_type": "Confession of Judgment",
+        "finding": "Borrower authorizes any attorney to confess judgment without notice or hearing, plus 20% attorney fees",
+        "risk_level": "Risky",
+        "explanation": "This is an extremely dangerous clause that allows the lender to obtain a court judgment against you without you being present, notified, or able to defend yourself. You lose fundamental due process rights. This is banned or restricted in many states.",
+        "recommendation": "REMOVE this clause entirely. It is unconscionable and may not be enforceable in your state. Never sign a contract with confession of judgment."
+      },
+      {
+        "clause_type": "Acceleration Clause",
+        "finding": "Any single late payment makes the entire loan balance immediately due",
+        "risk_level": "Risky",
+        "explanation": "One late payment, even by a day, means the lender can demand the full $50,000 immediately. This provides no grace period and no opportunity to cure a minor default.",
+        "recommendation": "Negotiate a cure period of at least 10-15 days written notice before acceleration, and limit acceleration to material breaches or multiple defaults."
+      },
+      {
+        "clause_type": "Personal Guarantee",
+        "finding": "Owner personally guarantees repayment and waives all legal defenses including suretyship defenses",
+        "risk_level": "Risky",
+        "explanation": "You are personally liable for the full debt beyond just business assets. Waiving suretyship defenses means you cannot argue the lender should collect from the business first, and you lose other legal protections normally available to guarantors.",
+        "recommendation": "Limit personal guarantee to a specific dollar amount or percentage. Do not waive suretyship defenses. Consider having the lender exhaust business assets first."
+      },
+      {
+        "clause_type": "Prepayment Penalty",
+        "finding": "5% penalty on outstanding balance for early repayment",
+        "risk_level": "Risky",
+        "explanation": "You are penalized for paying off the loan early, which prevents you from refinancing at better rates and locks you into this expensive loan. This benefits only the lender.",
+        "recommendation": "Remove prepayment penalty entirely, or limit it to the first 12 months and reduce to 1-2% maximum."
+      },
+      {
+        "clause_type": "Collateral/Security Interest",
+        "finding": "Secured by all business assets plus all personal property of the guarantor",
+        "risk_level": "Risky",
+        "explanation": "The lender can seize not just business assets but also your personal property. This puts your personal belongings at risk for a business loan.",
+        "recommendation": "Limit collateral to specific business assets only. Exclude personal property and primary residence from the security interest."
+      },
+      {
+        "clause_type": "Governing Law",
+        "finding": "Lender can select which state's laws apply at the time of enforcement",
+        "risk_level": "Risky",
+        "explanation": "The lender can choose the most favorable state laws when suing you, potentially avoiding your state's consumer protections or usury limits. This creates massive uncertainty about your legal rights.",
+        "recommendation": "Specify a fixed governing law jurisdiction, preferably your home state where the business operates. Never allow one party to select jurisdiction later."
+      },
+      {
+        "clause_type": "Attorney Fees",
+        "finding": "20% attorney fees automatically added in confession of judgment",
+        "risk_level": "Risky",
+        "explanation": "You automatically owe an additional 20% of the balance for attorney fees without any determination of reasonableness. On a $50,000 loan, that's an automatic $10,000 penalty.",
+        "recommendation": "Limit attorney fees to actual reasonable fees incurred, and only if the lender prevails in court. Remove the automatic 20% provision."
+      }
+    ],
+    "red_flags": [
+      "Confession of judgment clause strips you of due process rights and may be illegal in your state",
+      "Default interest rate of 29.99% is predatory and potentially usurious",
+      "Lender can choose governing law at enforcement time, allowing forum shopping for most favorable jurisdiction",
+      "Acceleration upon any late payment with no cure period or notice",
+      "Personal guarantee with waiver of all defenses puts personal assets at severe risk",
+      "All-asset security interest includes personal property beyond business assets",
+      "Prepayment penalty traps you in an expensive loan"
+    ],
+    "top_recommendation": "DO NOT SIGN this agreement under any circumstances. This is a predatory loan with unconscionable terms. Consult with a business attorney and seek financing from a reputable bank or credit union with standard commercial loan terms. If you have already signed, contact an attorney immediately to discuss your options."
+  },
+  {
+    "contract_name": "11_partnership_moderate.pdf",
+    "contract_type": "General Partnership Agreement",
+    "overall_risk_score": 68,
+    "risk_tier": "High",
+    "plain_english_summary": "This is a general partnership agreement for a coffee roasting business with a 60/40 profit split. The most serious concern is that both partners have unlimited personal liability for all business debts, meaning personal assets like homes and savings are at risk. The agreement also includes a 2-year non-compete restriction within 25 miles upon withdrawal.",
+    "clauses": [
+      {
+        "clause_type": "Liability Structure",
+        "finding": "General partnership structure with joint and several liability for all debts and obligations",
+        "risk_level": "Risky",
+        "explanation": "Each partner is personally liable for 100% of partnership debts, not just their share. If the business is sued or can't pay debts, creditors can go after either partner's personal assets including homes, cars, and bank accounts. This is the highest-risk business structure available.",
+        "recommendation": "Strongly consider restructuring as an LLC or LLP to protect personal assets. Consult an attorney immediately before signing."
+      },
+      {
+        "clause_type": "Capital Contributions",
+        "finding": "Unequal contributions: Partner A contributes $80,000 cash, Partner B contributes $40,000 plus full-time labor",
+        "risk_level": "Risky",
+        "explanation": "Partner B's labor contribution is not valued or defined with specifics. If Partner B stops working full-time or the relationship sours, there's no clear mechanism to account for this 'sweat equity' versus cash. Partner A contributed twice the capital but shares only 60% of profits.",
+        "recommendation": "Quantify the value of Partner B's labor contribution with specific work hour requirements and consequences for non-performance. Consider vesting schedules or performance milestones."
+      },
+      {
+        "clause_type": "Management & Decision-Making",
+        "finding": "Major decisions require unanimous consent; day-to-day operations managed by Partner B",
+        "risk_level": "Risky",
+        "explanation": "The unanimous consent requirement creates potential for deadlock on important business decisions. If partners disagree, the business could be paralyzed. 'Major decisions' is not defined, which can lead to disputes about what requires unanimous approval.",
+        "recommendation": "Define exactly what constitutes 'major decisions' with dollar thresholds and specific examples. Add a deadlock resolution mechanism or consider allowing certain decisions with majority vote."
+      },
+      {
+        "clause_type": "Withdrawal & Buyout",
+        "finding": "Partner may withdraw with 90 days notice; remaining partner has right of first refusal at fair market value",
+        "risk_level": "Neutral",
+        "explanation": "The 90-day notice period provides some transition time, and the right of first refusal protects the remaining partner. However, 'fair market value' is not defined, which could lead to disputes over valuation. No specified valuation methodology or appraisal process is included.",
+        "recommendation": "Add a specific valuation methodology (e.g., based on multiple of EBITDA, third-party appraisal, or formula). Include a timeline and process for completing the buyout transaction."
+      },
+      {
+        "clause_type": "Non-Compete",
+        "finding": "Withdrawing partner cannot operate competing coffee business within 25 miles for 2 years",
+        "risk_level": "Neutral",
+        "explanation": "The 2-year, 25-mile restriction is moderately restrictive but likely enforceable in Washington. This protects the business from immediate competition but could limit the departing partner's livelihood. The scope is limited to coffee businesses, not all food service.",
+        "recommendation": "Ensure this is acceptable before signing. Consider whether the geographic scope and duration are fair given the business location and each partner's circumstances. In exchange, consider negotiating for a smoother exit payment structure."
+      },
+      {
+        "clause_type": "Dispute Resolution",
+        "finding": "Disputes go first to mediation, then binding arbitration",
+        "risk_level": "Favorable",
+        "explanation": "The two-step process (mediation first, then arbitration) encourages settlement and avoids costly litigation. Mediation is non-binding and allows partners to maintain control, while arbitration provides a final resolution without going to court.",
+        "recommendation": "Specify who pays arbitration costs and identify an arbitration organization (e.g., AAA, JAMS). Consider adding details about timelines for initiating dispute resolution."
+      },
+      {
+        "clause_type": "Profit & Loss Allocation",
+        "finding": "Profits and losses shared 60/40",
+        "risk_level": "Neutral",
+        "explanation": "The 60/40 split is straightforward, but when combined with the unequal capital contributions (Partner A put in $80k, Partner B $40k plus labor), the arrangement may create tension. Partner A contributed 67% of cash capital but receives only 60% of profits.",
+        "recommendation": "Confirm this allocation is acceptable to both parties given the capital contribution imbalance. Consider whether a preferred return on capital or different allocation would be more equitable."
+      },
+      {
+        "clause_type": "Governing Law",
+        "finding": "Agreement governed by Washington State law",
+        "risk_level": "Neutral",
+        "explanation": "Washington law will govern interpretation and enforcement. This is standard and appropriate if the business operates in Washington. Washington has established partnership law based on the Uniform Partnership Act.",
+        "recommendation": "No action needed if both partners and the business are in Washington. Verify this is the intended jurisdiction."
+      }
+    ],
+    "red_flags": [
+      "Unlimited personal liability - both partners' personal assets are at risk for all partnership debts without any liability protection",
+      "No LLC or LLP structure - this is the highest-risk business entity type available",
+      "Unequal capital contributions with no clear valuation of labor - Partner B's 'full-time labor' commitment is undefined and unquantified",
+      "Unanimous consent requirement with no deadlock mechanism - business could become paralyzed if partners disagree",
+      "No defined valuation methodology for buyout - 'fair market value' will likely lead to disputes upon withdrawal",
+      "No dissolution procedure - agreement doesn't specify what happens if partnership must end entirely"
+    ],
+    "top_recommendation": "Do not sign this agreement without first restructuring as an LLC or LLP to protect personal assets from business liabilities. The unlimited personal liability exposure in a general partnership is extremely risky and unnecessary given that limited liability alternatives are readily available and inexpensive to establish."
+  },
+  {
+    "contract_name": "12_distribution_risky.pdf",
+    "contract_type": "Exclusive Distribution Agreement",
+    "overall_risk_score": 92,
+    "risk_tier": "High",
+    "plain_english_summary": "This is an extremely one-sided distribution agreement that puts nearly all risk and obligation on the Distributor. The Distributor must commit to $500,000 in annual purchases with penalties, cannot sell competing products for 3 years after termination, and must indemnify the Manufacturer even for the Manufacturer's own defective products. Meanwhile, the Manufacturer can terminate at will, change prices with minimal notice, and has severely limited liability.",
+    "clauses": [
+      {
+        "clause_type": "Minimum Purchase Obligation",
+        "finding": "Distributor must purchase $500,000 annually or pay a penalty equal to the full shortfall amount plus face termination",
+        "risk_level": "Risky",
+        "explanation": "This creates a double penalty: you pay for products you didn't buy AND can be terminated. If market conditions change or sales are slow, you're locked into a massive financial commitment with no flexibility.",
+        "recommendation": "Negotiate to remove the shortfall penalty, reduce the minimum commitment, or add force majeure provisions and ramp-up periods for the first year."
+      },
+      {
+        "clause_type": "Exclusivity",
+        "finding": "Distributor cannot carry competing products during the term and for 3 years after termination",
+        "risk_level": "Risky",
+        "explanation": "The 3-year post-termination restriction is excessive and could destroy your business if this relationship ends. You'd be barred from selling similar products even if the Manufacturer terminates you.",
+        "recommendation": "Eliminate the post-termination restriction entirely, or limit it to 6-12 months maximum and only if you terminate without cause."
+      },
+      {
+        "clause_type": "Pricing",
+        "finding": "Manufacturer can change prices at any time with only 5 days notice; Distributor must honor accepted orders at new prices",
+        "risk_level": "Risky",
+        "explanation": "You have no pricing predictability and could be forced to lose money on orders you've already accepted from customers at the old price. Five days is insufficient to adjust your own pricing or notify customers.",
+        "recommendation": "Require 60-90 days notice for price changes, and clarify that existing accepted orders are honored at the price in effect when the order was placed."
+      },
+      {
+        "clause_type": "Termination",
+        "finding": "Manufacturer can terminate at will with 15 days notice; Distributor can only terminate for material breach after 90 days cure period",
+        "risk_level": "Risky",
+        "explanation": "This is extremely unbalanced. The Manufacturer has a free exit while you're locked in. Combined with the minimum purchase requirement, you could invest heavily and be terminated immediately after.",
+        "recommendation": "Demand mutual termination rights: either both parties can terminate for convenience with equal notice (60-90 days), or neither can without cause during an initial term."
+      },
+      {
+        "clause_type": "Indemnification",
+        "finding": "Distributor must indemnify Manufacturer for ALL claims, including those arising from defects caused by the Manufacturer",
+        "risk_level": "Risky",
+        "explanation": "This is unconscionable. You would be financially responsible for the Manufacturer's faulty products. If they produce a defective product that injures someone, you pay for it, not them.",
+        "recommendation": "Reject this entirely. Indemnification should be mutual and each party should only indemnify for their own negligence or defects. The Manufacturer must indemnify you for product defects."
+      },
+      {
+        "clause_type": "Limitation of Liability",
+        "finding": "Manufacturer's liability is capped at the value of the single order that caused the claim",
+        "risk_level": "Risky",
+        "explanation": "If a defective product batch causes widespread damage, the Manufacturer's exposure is limited to one order value while you face unlimited liability. This is grossly unfair given the indemnification clause.",
+        "recommendation": "Increase the cap to at least 12 months of purchases or $500,000 minimum, and ensure it doesn't apply to gross negligence or willful misconduct."
+      },
+      {
+        "clause_type": "Governing Law",
+        "finding": "Contract governed by Illinois law with exclusive venue in Manufacturer's home county",
+        "risk_level": "Neutral",
+        "explanation": "This requires you to litigate in the Manufacturer's backyard, which increases costs and may give them home-court advantage, but this is relatively common in commercial contracts.",
+        "recommendation": "Negotiate for neutral venue or arbitration if the Manufacturer's location is distant from your operations. Consider adding an arbitration clause."
+      },
+      {
+        "clause_type": "Exclusive Appointment",
+        "finding": "Distributor is appointed as exclusive distributor in the territory",
+        "risk_level": "Favorable",
+        "explanation": "Exclusivity protects you from competition with other distributors in your territory, which is valuable for building the market.",
+        "recommendation": "Ensure the territory is clearly defined in writing. Given the other risky terms, exclusivity alone doesn't justify accepting this agreement."
+      }
+    ],
+    "red_flags": [
+      "Distributor must indemnify Manufacturer even for the Manufacturer's own product defects—this is unconscionable and potentially unenforceable",
+      "$500,000 minimum purchase with full shortfall penalty creates catastrophic financial risk",
+      "3-year post-termination non-compete could destroy Distributor's business even after being terminated by Manufacturer",
+      "Manufacturer can terminate at will with 15 days notice while Distributor is locked in",
+      "Manufacturer can change prices with 5 days notice and Distributor must honor accepted orders at new prices",
+      "Liability cap protects Manufacturer while Distributor has unlimited exposure",
+      "Combination of one-sided termination rights and minimum purchase creates risk of invest-and-terminate scenario"
+    ],
+    "top_recommendation": "DO NOT SIGN this agreement as written. The indemnification clause requiring you to cover the Manufacturer's defects, combined with unlimited purchase obligations and one-sided termination rights, creates unacceptable risk. Demand comprehensive revisions or walk away—this deal could bankrupt your company."
+  },
+  {
+    "contract_name": "13_msa_moderate.pdf",
+    "contract_type": "Master Services Agreement (MSA) for IT Services",
+    "overall_risk_score": 52,
+    "risk_tier": "Medium",
+    "plain_english_summary": "This is a standard master services agreement for IT services with individual project scopes defined in separate statements of work. The contract has some reasonable protections but contains auto-renewal provisions and a monthly interest penalty that require attention. Overall risk is moderate with a few key areas needing negotiation or careful management.",
+    "clauses": [
+      {
+        "clause_type": "Fees and Payment",
+        "finding": "Net 45 payment terms with 1.5% monthly interest on late payments",
+        "risk_level": "Risky",
+        "explanation": "The 1.5% monthly interest (18% annually) is high and could result in significant penalties if payments are delayed due to internal approval processes or disputes over deliverables",
+        "recommendation": "Negotiate to reduce interest rate to 1% monthly or lower, and ensure your AP process can consistently meet 45-day terms"
+      },
+      {
+        "clause_type": "Confidentiality",
+        "finding": "3-year confidentiality protection for both parties after disclosure",
+        "risk_level": "Neutral",
+        "explanation": "Standard duration for confidentiality obligations, protects sensitive business information for a reasonable period without being overly burdensome",
+        "recommendation": "Acceptable as written; ensure internal teams understand what constitutes confidential information"
+      },
+      {
+        "clause_type": "IP Ownership",
+        "finding": "Client owns deliverables upon payment; Provider retains pre-existing IP and tools",
+        "risk_level": "Neutral",
+        "explanation": "Fair allocation that gives you ownership of what you pay for while allowing the provider to reuse their existing methods and tools across clients",
+        "recommendation": "Ensure each SOW clearly defines what constitutes 'deliverables' versus 'pre-existing IP' to avoid disputes"
+      },
+      {
+        "clause_type": "Limitation of Liability",
+        "finding": "Liability capped at fees paid in prior 12 months, excluding confidentiality breaches and indemnity",
+        "risk_level": "Risky",
+        "explanation": "If a critical IT project fails, your recovery is limited to what you paid the vendor, which may be far less than your actual damages or business losses",
+        "recommendation": "Negotiate higher caps for critical projects or carve out additional exceptions for data breaches, security failures, or gross negligence"
+      },
+      {
+        "clause_type": "Indemnification",
+        "finding": "Mutual indemnity for third-party IP infringement and gross negligence",
+        "risk_level": "Neutral",
+        "explanation": "Balanced mutual obligation that protects both sides from third-party claims, though you bear risk if the provider uses infringing code in your deliverables",
+        "recommendation": "Consider requesting provider warranty that deliverables will not infringe third-party IP rights"
+      },
+      {
+        "clause_type": "Auto-Renewal",
+        "finding": "Automatically renews for 1-year terms unless 60 days notice is given",
+        "risk_level": "Risky",
+        "explanation": "Easy to miss the 60-day deadline and be locked into another year, especially if the MSA performance declines or you find a better vendor",
+        "recommendation": "Set a calendar reminder 90 days before each anniversary; consider negotiating for annual affirmative renewal instead of automatic renewal"
+      },
+      {
+        "clause_type": "Governing Law",
+        "finding": "Massachusetts law governs the agreement",
+        "risk_level": "Neutral",
+        "explanation": "Massachusetts is a reasonable jurisdiction with well-established commercial law; risk depends on your company's location",
+        "recommendation": "Acceptable unless your company is located far from Massachusetts; consider negotiating for your home state if disputes would be costly to litigate there"
+      }
+    ],
+    "red_flags": [
+      "High 1.5% monthly interest rate (18% annually) on late payments could create significant financial penalties",
+      "Auto-renewal clause requires proactive 60-day notice to avoid being locked in for another year",
+      "Liability cap at 12 months of fees may be inadequate for critical IT projects where failure could cause major business disruption",
+      "No explicit limitation on the provider's liability for data breaches or security incidents in IT services"
+    ],
+    "top_recommendation": "Negotiate to reduce the late payment interest rate to 1% monthly and set a calendar reminder system to track the 60-day auto-renewal notice deadline, then review liability caps for each SOW based on project criticality"
+  },
+  {
+    "contract_name": "14_sow_clean.pdf",
+    "contract_type": "Statement of Work (SOW) - IT Services",
+    "overall_risk_score": 35,
+    "risk_tier": "Medium",
+    "plain_english_summary": "This is a fixed-price agreement for migrating 120 users to a cloud email platform for $24,000 over 8 weeks. The contract is relatively straightforward but lacks critical protections around liability limits, data security, and intellectual property ownership that are important for IT migration projects.",
+    "clauses": [
+      {
+        "clause_type": "Fees and Payment",
+        "finding": "Fixed fee of $24,000 with three equal milestone payments on Net 30 terms",
+        "risk_level": "Neutral",
+        "explanation": "Fixed pricing provides budget certainty, and milestone-based payments help manage risk by tying payment to progress. Net 30 terms are standard.",
+        "recommendation": "Ensure milestone acceptance criteria are clearly documented and aligned with the three payment milestones."
+      },
+      {
+        "clause_type": "Acceptance",
+        "finding": "10 business days to review each milestone; automatically accepted if no written objection provided",
+        "risk_level": "Risky",
+        "explanation": "Automatic acceptance (deemed acceptance) can be problematic if issues are discovered later or if internal review processes take longer than 10 days. This puts pressure on the Client to act quickly.",
+        "recommendation": "Negotiate for explicit written acceptance requirement or extend review period to 15 business days, especially for critical migration milestones."
+      },
+      {
+        "clause_type": "Warranty",
+        "finding": "Services performed in professional manner; defects corrected at no cost for 30 days only",
+        "risk_level": "Risky",
+        "explanation": "The 30-day warranty period is very short for an email migration affecting 120 users. Many issues with migrations only surface after weeks of use, and this warranty expires before full user adoption.",
+        "recommendation": "Negotiate for at least 90-day warranty period to cover the typical email migration stabilization period."
+      },
+      {
+        "clause_type": "Termination",
+        "finding": "Either party may terminate for convenience with 30 days notice; Client pays for work completed",
+        "risk_level": "Neutral",
+        "explanation": "Termination for convenience with 30 days notice is reasonable and balanced. Payment for work completed protects the Provider while giving Client an exit option.",
+        "recommendation": "Clarify how 'work completed' is calculated and ensure it aligns with milestone definitions to avoid disputes."
+      },
+      {
+        "clause_type": "Limitation of Liability",
+        "finding": "No limitation of liability clause present",
+        "risk_level": "Risky",
+        "explanation": "Email migrations involve sensitive business data and potential for significant business interruption. Without a liability cap, both parties face unlimited exposure for damages, errors, or data loss.",
+        "recommendation": "Add a mutual limitation of liability clause capping damages at the contract value ($24,000) or 2x fees paid, with carve-outs for gross negligence and data breaches."
+      },
+      {
+        "clause_type": "Indemnification",
+        "finding": "No indemnification clause present",
+        "risk_level": "Risky",
+        "explanation": "Without indemnification provisions, there's no protection if third-party claims arise from the migration work, such as data privacy violations or intellectual property issues with migration tools.",
+        "recommendation": "Add mutual indemnification for third-party claims arising from each party's breach, negligence, or violation of law."
+      },
+      {
+        "clause_type": "Confidentiality",
+        "finding": "No confidentiality or data protection clause present",
+        "risk_level": "Risky",
+        "explanation": "Email migration inherently involves access to highly sensitive business communications and personal data. Without confidentiality protections, the Client's data is at risk and may violate privacy regulations.",
+        "recommendation": "Immediately add comprehensive confidentiality, data protection, and security provisions including encryption requirements and compliance with applicable privacy laws (GDPR, CCPA, etc.)."
+      },
+      {
+        "clause_type": "IP Ownership",
+        "finding": "No intellectual property ownership clause present",
+        "risk_level": "Neutral",
+        "explanation": "While the migration plan and training materials could have IP implications, this is primarily a service engagement. However, ownership of migration documentation and tools should be clarified.",
+        "recommendation": "Clarify that Client owns all migration data and documentation, while Provider retains rights to pre-existing tools and methodologies."
+      },
+      {
+        "clause_type": "Governing Law",
+        "finding": "Governed by the laws of the State of Colorado",
+        "risk_level": "Neutral",
+        "explanation": "Colorado law is specified but no dispute resolution mechanism is provided. This is standard but incomplete.",
+        "recommendation": "Add dispute resolution provisions (mediation before litigation) and specify venue/jurisdiction within Colorado to avoid forum shopping."
+      },
+      {
+        "clause_type": "Timeline and Scope",
+        "finding": "8-week timeline with defined milestones but no change order process mentioned",
+        "risk_level": "Risky",
+        "explanation": "IT migrations frequently encounter scope creep, technical challenges, or timeline delays. Without a change order process, disputes over additional work and delays are likely.",
+        "recommendation": "Add a formal change order process requiring written approval for any scope, timeline, or fee changes before additional work begins."
+      }
+    ],
+    "red_flags": [
+      "No confidentiality or data protection provisions despite handling sensitive email data for 120 users",
+      "No limitation of liability clause exposing both parties to unlimited damages in a data migration project",
+      "Very short 30-day warranty period insufficient for email migration stabilization",
+      "No change order process defined for inevitable scope changes in IT projects",
+      "Automatic acceptance after 10 days creates pressure and risk of accepting defective work"
+    ],
+    "top_recommendation": "Do not sign this contract without adding comprehensive data protection, confidentiality, and security provisions - email migrations involve highly sensitive data and the contract currently has no safeguards for data privacy, security breaches, or regulatory compliance."
+  },
+  {
+    "contract_name": "15_reseller_moderate.pdf",
+    "contract_type": "Reseller Agreement",
+    "overall_risk_score": 52,
+    "risk_tier": "Medium",
+    "plain_english_summary": "This is a non-exclusive reseller agreement where the reseller gets a 25% discount on software and sets their own prices. The reseller must pay the company within 30 days regardless of when their customers pay, creating cash flow risk. The agreement has moderate protections for both parties but includes several clauses that could create financial and operational challenges for the reseller.",
+    "clauses": [
+      {
+        "clause_type": "Appointment",
+        "finding": "Non-exclusive reseller rights in unspecified territory",
+        "risk_level": "Neutral",
+        "explanation": "Being non-exclusive means the company can appoint other resellers or sell directly in your territory, limiting your ability to control the market and maximize sales.",
+        "recommendation": "Request exclusivity for a specific geographic territory or customer segment if possible, or accept this as standard for lower commitment arrangements."
+      },
+      {
+        "clause_type": "Discount/Pricing",
+        "finding": "25% discount with freedom to set resale prices",
+        "risk_level": "Neutral",
+        "explanation": "The 25% margin must cover all your sales, marketing, and support costs. This is a moderate discount that may be tight depending on your customer acquisition costs.",
+        "recommendation": "Calculate your total cost of sale including Tier 1 support to ensure 25% margin is sufficient for profitability."
+      },
+      {
+        "clause_type": "Payment Terms",
+        "finding": "Reseller must pay Company within 30 days regardless of customer payment",
+        "risk_level": "Risky",
+        "explanation": "You bear all the credit risk and cash flow burden. If your customer pays in 60 or 90 days or defaults entirely, you still owe the company in 30 days. This can create severe cash flow problems.",
+        "recommendation": "Negotiate payment terms tied to customer payment (e.g., pay-when-paid clause) or request 60-90 day payment terms to better align with typical B2B payment cycles."
+      },
+      {
+        "clause_type": "Trademark Usage",
+        "finding": "Limited trademark use per company guidelines",
+        "risk_level": "Neutral",
+        "explanation": "Standard protective clause allowing you to market using their brand but subject to their control. Guidelines could change or be restrictive.",
+        "recommendation": "Request a copy of trademark guidelines before signing and ensure they're reasonable for your marketing needs."
+      },
+      {
+        "clause_type": "Termination",
+        "finding": "Either party can terminate with 60 days notice for any reason",
+        "risk_level": "Risky",
+        "explanation": "The company can terminate your reseller relationship with only 60 days notice without cause, giving you little time to transition and potentially stranding customer relationships and pipeline deals you've invested in.",
+        "recommendation": "Negotiate a longer notice period (6-12 months) or add protections for deals in your pipeline, and request termination only for cause after an initial period."
+      },
+      {
+        "clause_type": "Limitation of Liability",
+        "finding": "Company liability capped at amounts paid by Reseller in prior 6 months",
+        "risk_level": "Risky",
+        "explanation": "If the software fails and causes problems for your customers, the company's maximum liability to you is only what you paid them in the last 6 months. Your liability to your customers could be much greater, leaving you exposed.",
+        "recommendation": "Request higher liability caps or mutual liability limitations, and ensure you have adequate insurance and protective terms in your customer contracts."
+      },
+      {
+        "clause_type": "Support Obligations",
+        "finding": "Reseller must provide Tier 1 support; Company provides Tier 2",
+        "risk_level": "Risky",
+        "explanation": "You're responsible for frontline customer support, which requires staffing, training, and ongoing costs that must come out of your 25% margin. These costs can be substantial and unpredictable.",
+        "recommendation": "Estimate Tier 1 support costs before signing. Request training, documentation, and support tools from the company, and consider whether 25% margin adequately covers these obligations."
+      },
+      {
+        "clause_type": "Governing Law",
+        "finding": "Governed by Georgia law",
+        "risk_level": "Neutral",
+        "explanation": "Any disputes will be resolved under Georgia state law. If you're located elsewhere, this could increase legal costs and create uncertainty about local consumer protection laws.",
+        "recommendation": "Acceptable if you operate in or near Georgia; otherwise, consider negotiating for your home state law or mutual jurisdiction provisions."
+      }
+    ],
+    "red_flags": [
+      "Payment required within 30 days regardless of customer payment - creates significant cash flow and credit risk",
+      "Either party termination with only 60 days notice without cause - provides minimal business stability",
+      "Liability cap of 6 months of payments may leave reseller significantly exposed to customer claims",
+      "25% margin must cover Tier 1 support obligations which could be costly and unpredictable",
+      "No exclusivity or territory protection against competing resellers or direct sales"
+    ],
+    "top_recommendation": "Negotiate the payment terms as top priority - request either pay-when-paid terms or extend payment window to 60-90 days to align with typical customer payment cycles and protect your cash flow, as this presents the most immediate financial risk to your business."
+  },
+  {
+    "contract_name": "16_maintenance_clean.pdf",
+    "contract_type": "Software Support and Maintenance Agreement",
+    "overall_risk_score": 25,
+    "risk_tier": "Low",
+    "plain_english_summary": "This is a straightforward annual software maintenance contract for $12,000 per year covering bug fixes, updates, and technical support. The agreement is balanced with reasonable protections for both sides, no automatic renewal, and a liability cap equal to the annual fee. The main limitation is that neither party can recover indirect damages.",
+    "clauses": [
+      {
+        "clause_type": "Services",
+        "finding": "Provider delivers bug fixes, updates, and technical support for licensed software",
+        "risk_level": "Neutral",
+        "explanation": "Standard maintenance services are defined but lack detailed specifications about response quality or update frequency",
+        "recommendation": "Request more detailed service specifications in a Schedule or Statement of Work"
+      },
+      {
+        "clause_type": "Service Levels",
+        "finding": "4-hour response time for critical issues and 99.5% uptime target for hosted components",
+        "risk_level": "Favorable",
+        "explanation": "Specific performance metrics are provided with reasonable timeframes that hold the provider accountable",
+        "recommendation": "Clarify what constitutes a 'critical issue' and ensure penalties or remedies exist if SLAs are missed"
+      },
+      {
+        "clause_type": "Fees and Payment",
+        "finding": "$12,000 annual fee paid in advance with maximum 5% annual increases",
+        "risk_level": "Favorable",
+        "explanation": "Cost is predictable and capped, protecting against excessive price increases year-over-year",
+        "recommendation": "Confirm whether the 5% cap applies only upon renewal or also within the current term"
+      },
+      {
+        "clause_type": "Auto-Renewal",
+        "finding": "1-year term requiring written agreement from both parties 30 days before expiration to renew",
+        "risk_level": "Favorable",
+        "explanation": "No automatic renewal means you won't be locked into continued service unless both sides actively agree",
+        "recommendation": "Set a calendar reminder 45 days before expiration to evaluate whether to renew"
+      },
+      {
+        "clause_type": "Limitation of Liability",
+        "finding": "Liability capped at annual fee ($12,000); no indirect damages recoverable by either party",
+        "risk_level": "Neutral",
+        "explanation": "Standard cap limits your maximum recovery to what you paid, which may be insufficient if critical software failures cause significant business losses",
+        "recommendation": "Assess whether $12,000 cap is adequate given potential business impact of software downtime; consider negotiating higher cap for gross negligence"
+      },
+      {
+        "clause_type": "Data and Confidentiality",
+        "finding": "Provider commits to reasonable security and will only access client data to provide support",
+        "risk_level": "Neutral",
+        "explanation": "Basic data protection commitment exists but lacks detail on security standards, breach notification, or compliance requirements",
+        "recommendation": "Request specific security standards (e.g., SOC 2, ISO 27001), data breach notification timeframes, and ensure compliance with applicable privacy laws"
+      },
+      {
+        "clause_type": "Termination",
+        "finding": "Either party may terminate for material breach after 30 days written notice if breach remains uncured",
+        "risk_level": "Favorable",
+        "explanation": "Balanced termination rights give both sides an exit if the other fails to perform, with reasonable cure period",
+        "recommendation": "Clarify whether fees are pro-rated upon early termination and what happens to data and access rights"
+      },
+      {
+        "clause_type": "Governing Law",
+        "finding": "Agreement governed by Oregon state law",
+        "risk_level": "Neutral",
+        "explanation": "Oregon law will apply to disputes; this is standard but may require out-of-state litigation if you are not based in Oregon",
+        "recommendation": "Confirm your comfort with Oregon jurisdiction; consider negotiating for your home state if preferred"
+      }
+    ],
+    "red_flags": [
+      "Liability cap of only $12,000 may be insufficient if software failure causes significant business disruption",
+      "No indirect damages recoverable, eliminating claims for lost profits or business interruption",
+      "Data security provisions are vague with no specific standards or breach notification requirements"
+    ],
+    "top_recommendation": "Evaluate whether the $12,000 liability cap is adequate for your business risk exposure; if this software is mission-critical, negotiate a higher cap or carve-out for gross negligence and willful misconduct."
+  },
+  {
+    "contract_name": "17_photography_moderate.pdf",
+    "contract_type": "Photography Services Agreement",
+    "overall_risk_score": 52,
+    "risk_tier": "Medium",
+    "plain_english_summary": "This is a photography services contract for a one-day corporate event at $2,200 with a non-refundable $500 deposit. The photographer keeps all copyrights and you only get a limited license to use the photos; you cannot resell them. Key risks include a very short 7-day cancellation window that requires full payment, liability capped at only a fee refund, and responsibility for obtaining consent from everyone photographed.",
+    "clauses": [
+      {
+        "clause_type": "Fee and Payment",
+        "finding": "$2,200 flat fee due on event date with $500 non-refundable deposit upfront",
+        "risk_level": "Neutral",
+        "explanation": "Standard photography pricing structure with deposit to secure the date. The non-refundable deposit protects the photographer's calendar but you lose $500 if you cancel for any reason.",
+        "recommendation": "Confirm the event date is firm before paying the deposit, as you cannot recover it."
+      },
+      {
+        "clause_type": "IP Ownership",
+        "finding": "Photographer retains all copyright; client receives limited internal and marketing use license only",
+        "risk_level": "Risky",
+        "explanation": "You do not own the photos even though you paid for them. Your ability to use them is restricted to internal purposes and your own marketing, and you cannot transfer or sell rights to others without additional fees.",
+        "recommendation": "If you need broader rights or ownership, negotiate a copyright transfer or work-for-hire arrangement before signing. Clarify what 'internal and marketing use' specifically includes."
+      },
+      {
+        "clause_type": "Usage Restriction",
+        "finding": "Client cannot resell or sublicense images without written consent and additional fees",
+        "risk_level": "Risky",
+        "explanation": "This severely limits your commercial flexibility. If you later want to share images with partners, sponsors, or use them in ways that might be considered 'licensing,' you'll need photographer approval and must pay more.",
+        "recommendation": "Negotiate upfront for any anticipated uses beyond basic marketing, or request a broader license that covers likely business needs."
+      },
+      {
+        "clause_type": "Model Releases",
+        "finding": "Client is fully responsible for obtaining consent from all photographed individuals",
+        "risk_level": "Risky",
+        "explanation": "If attendees later claim their image was used without permission, you are liable, not the photographer. This can lead to legal disputes and potential damages, especially for commercial use.",
+        "recommendation": "Prepare model release forms for event attendees to sign, or have signage stating that attendance constitutes consent for photography. Consult legal counsel on proper consent procedures."
+      },
+      {
+        "clause_type": "Cancellation",
+        "finding": "Cancellation within 7 days of event requires full $2,200 payment; earlier cancellation forfeits $500 deposit",
+        "risk_level": "Risky",
+        "explanation": "The 7-day window is very short and could catch you by surprise. If the event is cancelled or postponed less than a week out for any reason (weather, emergency, low attendance), you owe the full fee even with no service rendered.",
+        "recommendation": "Negotiate a longer cancellation window (14-30 days is more common) or add force majeure provisions allowing postponement without full payment in case of emergencies."
+      },
+      {
+        "clause_type": "Limitation of Liability",
+        "finding": "Photographer's liability capped at refund of fees paid if they totally fail to deliver",
+        "risk_level": "Risky",
+        "explanation": "If the photographer no-shows, delivers corrupt files, or provides unusable images, your only remedy is getting your $2,200 back. You cannot recover costs for rebooking, lost marketing value, or any consequential business damages.",
+        "recommendation": "Request higher liability cap or add performance guarantees. Consider requiring proof of professional liability insurance and backup equipment/photographer provisions."
+      },
+      {
+        "clause_type": "Governing Law",
+        "finding": "Contract governed by Florida state law",
+        "risk_level": "Neutral",
+        "explanation": "Any disputes will be resolved under Florida law. This is only problematic if your business is located far from Florida, as it may increase legal costs if disputes arise.",
+        "recommendation": "If you are not in Florida, consider negotiating for your home state's law or adding an arbitration clause to reduce litigation costs."
+      }
+    ],
+    "red_flags": [
+      "You retain no copyright ownership despite paying for the work - photographer keeps all rights",
+      "Extremely short 7-day cancellation window requiring full payment even if event is cancelled",
+      "You are solely responsible for obtaining consent from all photographed individuals, creating legal exposure",
+      "Liability capped at mere fee refund with no coverage for consequential damages or business losses",
+      "Cannot resell or sublicense images without additional photographer approval and fees"
+    ],
+    "top_recommendation": "Before signing, negotiate three critical changes: (1) extend the cancellation window to at least 14-30 days, (2) clarify and potentially broaden the usage license to cover all anticipated business needs, and (3) establish a clear process for obtaining model releases with photographer cooperation or include language that photography constitutes consent."
+  },
+  {
+    "contract_name": "18_equipment_rental_moderate.pdf",
+    "contract_type": "Equipment Rental Agreement",
+    "overall_risk_score": 62,
+    "risk_tier": "Medium",
+    "plain_english_summary": "This is a 30-day excavator rental for $4,500/month where the renter (Lessee) bears all responsibility for damage, loss, theft, insurance, and must indemnify the owner against all claims. The owner has no liability for equipment failure or downtime, and late returns cost double the daily rate.",
+    "clauses": [
+      {
+        "clause_type": "Risk of Loss",
+        "finding": "Lessee bears all risk of loss, theft, or damage from delivery until return and must insure equipment for full value",
+        "risk_level": "Risky",
+        "explanation": "You are responsible for any damage or loss even if it's not your fault (fire, theft, vandalism, etc.), and you must obtain insurance at your own expense",
+        "recommendation": "Confirm you can obtain adequate insurance coverage before signing and factor insurance costs into your budget"
+      },
+      {
+        "clause_type": "Limitation of Liability",
+        "finding": "Lessor has no liability for any loss or downtime caused by equipment failure",
+        "risk_level": "Risky",
+        "explanation": "If the excavator breaks down, you still pay rent and the owner owes you nothing for project delays or lost income, even if the failure was due to a pre-existing defect",
+        "recommendation": "Negotiate for rental credit or reduced fees if equipment fails due to owner's poor maintenance or pre-existing defects"
+      },
+      {
+        "clause_type": "Indemnification",
+        "finding": "Lessee indemnifies Lessor against all claims arising from Lessee's use of the equipment",
+        "risk_level": "Risky",
+        "explanation": "You must defend and pay for any lawsuits related to your use of the equipment, including injury claims from third parties, which could be very costly",
+        "recommendation": "Ensure your general liability insurance covers rental equipment operations and consider adding the Lessor as additional insured"
+      },
+      {
+        "clause_type": "Late Return Fees",
+        "finding": "Late returns charged at 200% of the daily rate",
+        "risk_level": "Risky",
+        "explanation": "If you return the equipment even one day late, you pay double the normal daily rate (approximately $300/day instead of $150/day)",
+        "recommendation": "Build buffer time into your project schedule or negotiate more reasonable late fees (e.g., 150% or same-day rate)"
+      },
+      {
+        "clause_type": "Maintenance",
+        "finding": "Lessee responsible for routine maintenance and all damage beyond normal wear and tear",
+        "risk_level": "Neutral",
+        "explanation": "You must perform oil changes, greasing, and other routine upkeep during the rental period and pay for any damage you cause",
+        "recommendation": "Inspect equipment thoroughly before accepting delivery and document pre-existing condition with photos"
+      },
+      {
+        "clause_type": "Fees/Payment",
+        "finding": "$4,500 monthly rental fee plus $2,000 refundable security deposit",
+        "risk_level": "Neutral",
+        "explanation": "Standard pricing structure with security deposit to cover potential damages; deposit should be returned if equipment is in good condition",
+        "recommendation": "Clarify in writing what constitutes acceptable condition for full deposit refund and timeline for return of deposit"
+      },
+      {
+        "clause_type": "Governing Law",
+        "finding": "Governed by the laws of the State of Arizona",
+        "risk_level": "Neutral",
+        "explanation": "Any disputes will be resolved under Arizona law, which may require you to litigate in Arizona courts",
+        "recommendation": "Confirm this is acceptable for your location; if you're far from Arizona, consider negotiating for your home state"
+      }
+    ],
+    "red_flags": [
+      "Lessee bears 100% of risk for loss, theft, or damage regardless of fault",
+      "Owner has zero liability for equipment failure or your resulting losses/downtime",
+      "Extremely high late return penalty at 200% of daily rate",
+      "Broad indemnification with no carve-outs for owner's negligence",
+      "No warranty that equipment is in working condition or fit for purpose"
+    ],
+    "top_recommendation": "Before signing, obtain comprehensive equipment insurance coverage and negotiate to add exceptions to the limitation of liability clause so you receive rental credits if equipment fails due to owner's poor maintenance or pre-existing defects"
+  },
+  {
+    "contract_name": "19_franchise_risky.pdf",
+    "contract_type": "Franchise Agreement",
+    "overall_risk_score": 87,
+    "risk_tier": "High",
+    "plain_english_summary": "This is an extremely one-sided franchise agreement that heavily favors the franchisor. The franchisee faces mandatory weekly payments regardless of profits, personal liability guarantees, one-sided termination rights, severe restrictions on operations and exit, and has waived important legal protections including jury trial rights.",
+    "clauses": [
+      {
+        "clause_type": "Fees and Royalty",
+        "finding": "9% royalty on gross sales plus 4% marketing fee payable weekly regardless of profitability, plus $45,000 initial fee",
+        "risk_level": "Risky",
+        "explanation": "Payment based on gross sales (not profit) means you owe money even when losing money. Weekly payment frequency creates constant cash flow pressure. Combined 13% of gross revenue is very high.",
+        "recommendation": "Negotiate to tie payments to net profitability or at minimum change to monthly payments. Request cap on fees during startup period or low-revenue months."
+      },
+      {
+        "clause_type": "Termination",
+        "finding": "Franchisor can terminate for dozens of defaults with no cure period; franchisee has essentially no termination right",
+        "risk_level": "Risky",
+        "explanation": "This gives the franchisor absolute power to end the relationship instantly for minor issues while you are locked in for 10 years. You could lose your entire investment with no warning or ability to fix problems.",
+        "recommendation": "Demand cure periods of at least 30 days for non-critical defaults and reciprocal termination rights. Negotiate early termination options with reasonable buyout terms."
+      },
+      {
+        "clause_type": "Post-Term Non-Compete",
+        "finding": "3-year non-compete within 30 miles after termination for any similar business",
+        "risk_level": "Risky",
+        "explanation": "Even after the franchise ends, you cannot use your industry experience to earn a living in your local area for 3 years. This could destroy your career and livelihood, especially if franchisor terminates you.",
+        "recommendation": "Negotiate to reduce to 1 year and 10 miles, or eliminate entirely. Ensure non-compete does not apply if franchisor terminates without cause."
+      },
+      {
+        "clause_type": "Personal Guarantee",
+        "finding": "All owners personally guarantee all obligations and royalty payments for full 10-year term",
+        "risk_level": "Risky",
+        "explanation": "Your personal assets (home, savings, retirement accounts) are at risk for business debts. If the franchise fails, you remain personally liable for all payments for the entire 10 years.",
+        "recommendation": "Negotiate to limit personal guarantee to first 2-3 years or cap at a specific dollar amount. Consider forming an LLC and try to eliminate personal guarantee entirely."
+      },
+      {
+        "clause_type": "Operational Control",
+        "finding": "Must purchase all supplies from franchisor-approved vendors at franchisor-set prices; must follow operations manual as amended at any time",
+        "risk_level": "Risky",
+        "explanation": "Franchisor controls your costs completely and can change requirements anytime, potentially making your business unprofitable. You have no ability to source cheaper alternatives or control expenses.",
+        "recommendation": "Negotiate the right to use alternative vendors if prices exceed market rates by more than 10%. Request that manual changes require 90 days notice and cannot materially increase costs."
+      },
+      {
+        "clause_type": "Transfer and Sale Restrictions",
+        "finding": "Cannot sell or transfer without franchisor consent plus 5% transfer fee; franchisor has right of first refusal",
+        "risk_level": "Risky",
+        "explanation": "You cannot exit the business or recoup your investment without franchisor approval. The 5% fee reduces your sale proceeds, and right of first refusal means franchisor can block any sale by matching the offer.",
+        "recommendation": "Negotiate to eliminate or reduce transfer fee to 1-2%. Require franchisor to exercise right of first refusal within 30 days with same terms as buyer offer."
+      },
+      {
+        "clause_type": "Governing Law and Jury Waiver",
+        "finding": "Governed by franchisor's home state law; franchisee waives right to jury trial",
+        "risk_level": "Risky",
+        "explanation": "You must litigate in franchisor's state under their favorable laws, increasing your costs. Waiving jury trial means a judge (not peers) decides disputes, typically favoring sophisticated corporate parties.",
+        "recommendation": "Negotiate for neutral venue or your home state. Remove jury trial waiver entirely - this is a fundamental legal right you should not surrender."
+      },
+      {
+        "clause_type": "Term Length",
+        "finding": "10-year term with highly restricted termination rights for franchisee",
+        "risk_level": "Risky",
+        "explanation": "You are locked into a decade-long commitment with personal guarantees and weekly payments, but franchisor can terminate you anytime. This extreme imbalance traps you in a potentially unprofitable business.",
+        "recommendation": "Negotiate for 5-year initial term with renewal options, or include performance-based exit clauses allowing termination if revenue targets are not met after first 2 years."
+      }
+    ],
+    "red_flags": [
+      "Personal guarantee for 10-year term puts all personal assets at risk indefinitely",
+      "Franchisor can terminate instantly for numerous reasons with no cure period while franchisee is locked in",
+      "Weekly royalty payments on gross sales (not profit) regardless of business profitability",
+      "3-year non-compete prevents earning a living in the industry after termination",
+      "Franchisor controls all supply pricing with no market rate protection",
+      "Jury trial waiver and franchisor's home state jurisdiction eliminates legal protections",
+      "No reciprocal rights - every clause favors franchisor with no balance",
+      "Right of first refusal and transfer restrictions make exit nearly impossible"
+    ],
+    "top_recommendation": "Do not sign this agreement as written. Consult a franchise attorney immediately to negotiate major revisions, particularly eliminating the personal guarantee, adding cure periods to termination clauses, reducing the non-compete, and establishing mutual termination rights. If franchisor refuses to negotiate these fundamental terms, walk away - this deal is structured for franchisee failure and franchisor profit regardless of your business performance."
+  },
+  {
+    "contract_name": "20_contractor_moderate.pdf",
+    "contract_type": "Independent Contractor Agreement",
+    "overall_risk_score": 58,
+    "risk_tier": "Medium",
+    "plain_english_summary": "This is a standard independent contractor agreement for graphic design services at $65/hour with monthly invoicing. The contractor gives up all rights to their work and must defend the company against any claims, including employment misclassification issues. The agreement can be terminated by either party with 15 days notice.",
+    "clauses": [
+      {
+        "clause_type": "IP Assignment",
+        "finding": "All work product, including pre-existing materials incorporated into the work, automatically belongs to the Company as work-made-for-hire",
+        "risk_level": "Risky",
+        "explanation": "This is overly broad for a contractor. The clause transfers not only the new work but also any pre-existing materials the contractor brings to the project, meaning the contractor loses ownership of their own prior creations, templates, or tools they may want to reuse for other clients.",
+        "recommendation": "Negotiate to limit IP assignment to only the final deliverables created specifically for this project, excluding contractor's pre-existing materials, tools, and general methodologies."
+      },
+      {
+        "clause_type": "Indemnification",
+        "finding": "Contractor must indemnify Company for any third-party claims arising from the work OR from employment misclassification",
+        "risk_level": "Risky",
+        "explanation": "This forces the contractor to pay the company's legal costs if the IRS or state labor board decides the contractor should have been classified as an employee. This shifts a business risk that is largely controlled by how the company manages the relationship onto the contractor.",
+        "recommendation": "Remove or strongly push back on the misclassification indemnity provision. Contractor should only indemnify for third-party IP claims directly related to deliverables, not employment classification disputes."
+      },
+      {
+        "clause_type": "Fees/Payment",
+        "finding": "Hourly rate of $65 with monthly invoicing and net 30 payment terms",
+        "risk_level": "Neutral",
+        "explanation": "Standard payment structure for contractor work. Net 30 means payment could be up to 60 days out (30 days to invoice + 30 to pay), which may impact cash flow.",
+        "recommendation": "Consider negotiating net 15 terms or requiring deposits for larger projects to improve cash flow."
+      },
+      {
+        "clause_type": "Confidentiality",
+        "finding": "Contractor must keep Company information confidential for 3 years",
+        "risk_level": "Neutral",
+        "explanation": "A 3-year confidentiality period is reasonable and standard for protecting business information. The timeframe is limited rather than perpetual.",
+        "recommendation": "Acceptable as written. Ensure you understand what constitutes confidential information and maintain appropriate safeguards."
+      },
+      {
+        "clause_type": "Termination",
+        "finding": "Either party can terminate with 15 days notice; Company pays for approved work completed",
+        "risk_level": "Neutral",
+        "explanation": "This is a balanced termination clause that gives both parties flexibility. The 15-day notice period provides some planning time, and the contractor is protected by being paid for completed work.",
+        "recommendation": "Acceptable. Consider clarifying what constitutes 'approved work' to avoid payment disputes upon termination."
+      },
+      {
+        "clause_type": "No Benefits",
+        "finding": "Contractor receives no employee benefits and handles own taxes",
+        "risk_level": "Neutral",
+        "explanation": "This is standard for independent contractor relationships and correctly reflects the tax treatment difference between contractors and employees.",
+        "recommendation": "Ensure you set aside approximately 25-30% of income for self-employment taxes and consider your own health insurance and retirement planning."
+      },
+      {
+        "clause_type": "Governing Law",
+        "finding": "Contract disputes will be resolved under Minnesota state law",
+        "risk_level": "Neutral",
+        "explanation": "Minnesota law will govern any disputes. This is only a concern if you are located far from Minnesota, as you may need to defend claims there.",
+        "recommendation": "If you are not in Minnesota, consider requesting governing law in your home state or adding a provision for remote dispute resolution."
+      }
+    ],
+    "red_flags": [
+      "IP assignment includes contractor's pre-existing materials, potentially losing rights to your own prior work and tools",
+      "Indemnification for employment misclassification shifts company's legal risk to contractor for issues largely outside contractor's control",
+      "No limitation of liability cap, meaning contractor has unlimited financial exposure for claims"
+    ],
+    "top_recommendation": "Do not sign without negotiating the IP Assignment clause to exclude your pre-existing materials and the Indemnification clause to remove misclassification liability. These two provisions create significant long-term risk to your business assets and financial security."
+  },
+  {
+    "contract_name": "21_dpa_moderate.pdf",
+    "contract_type": "Data Processing Agreement (DPA)",
+    "overall_risk_score": 52,
+    "risk_tier": "Medium",
+    "plain_english_summary": "This is a data processing agreement where the Provider handles personal data on behalf of the Customer. The agreement has reasonable data protection provisions including breach notification and deletion rights, but applies the liability caps from the main contract to data breaches, which could significantly limit recovery for potentially serious data incidents.",
+    "clauses": [
+      {
+        "clause_type": "Roles and Responsibilities",
+        "finding": "Customer is designated as data controller, Provider as data processor processing only on documented instructions",
+        "risk_level": "Favorable",
+        "explanation": "Clear role definition is essential for GDPR compliance and ensures Provider cannot use your data for their own purposes",
+        "recommendation": "Ensure the main agreement clearly documents all processing instructions and permitted purposes"
+      },
+      {
+        "clause_type": "Security Measures",
+        "finding": "Provider must implement appropriate technical and organizational measures including encryption and access controls",
+        "risk_level": "Neutral",
+        "explanation": "Security requirements are mentioned but lack specific standards or audit rights. No mention of compliance certifications like ISO 27001 or SOC 2",
+        "recommendation": "Request detailed security documentation and annual audit rights, and specify required certifications in an appendix"
+      },
+      {
+        "clause_type": "Sub-processors",
+        "finding": "Provider may engage sub-processors with 30 days notice; Customer may object on reasonable grounds",
+        "risk_level": "Neutral",
+        "explanation": "Standard GDPR-compliant provision allowing you to vet third parties who will access your data, though 30 days may be tight for full due diligence",
+        "recommendation": "Request a current list of all sub-processors before signing and consider negotiating approval rights rather than just objection rights"
+      },
+      {
+        "clause_type": "Breach Notification",
+        "finding": "Provider must notify Customer of personal data breaches within 72 hours of becoming aware",
+        "risk_level": "Favorable",
+        "explanation": "Aligns with GDPR's 72-hour notification requirement to authorities, giving you time to meet your regulatory obligations",
+        "recommendation": "Ensure notification includes all details required by GDPR Article 33 (nature of breach, affected data subjects, likely consequences, mitigation measures)"
+      },
+      {
+        "clause_type": "Limitation of Liability",
+        "finding": "Liability under this DPA is subject to the limitation of liability in the main agreement, which may cap data-related claims",
+        "risk_level": "Risky",
+        "explanation": "Data breaches can result in massive regulatory fines and damages far exceeding typical service fees. Capping liability for data incidents at the same level as general service issues leaves you exposed",
+        "recommendation": "Negotiate to either exclude data breaches from liability caps entirely or establish a separate, higher cap specifically for data protection violations (e.g., €10M or 10x annual fees)"
+      },
+      {
+        "clause_type": "Data Deletion",
+        "finding": "Provider must delete or return all personal data within 30 days of termination",
+        "risk_level": "Favorable",
+        "explanation": "Ensures data is not retained indefinitely after the relationship ends, reducing ongoing exposure and supporting GDPR data minimization principles",
+        "recommendation": "Request written certification of deletion and clarify whether 'return' means secure transfer or destruction after Customer receives it"
+      },
+      {
+        "clause_type": "Governing Law",
+        "finding": "Governed by laws of Ireland with disputes subject to GDPR requirements",
+        "risk_level": "Neutral",
+        "explanation": "Ireland is an EU member with strong data protection oversight, and explicit GDPR reference is appropriate. However, forum for disputes is not specified",
+        "risk_recommendation": "Verify Irish law is acceptable for your organization and clarify whether disputes will be handled in Irish courts or through arbitration"
+      }
+    ],
+    "red_flags": [
+      "Liability for data breaches is capped by the main agreement, potentially leaving significant exposure uncovered for what could be multi-million dollar incidents",
+      "Security measures are described only at high level with no specific standards, certifications, or audit rights mentioned",
+      "No mention of data subject rights (access, rectification, erasure requests) or how Provider will assist Customer in fulfilling these GDPR obligations",
+      "Missing provisions for international data transfers if Provider or sub-processors are outside the EU/EEA",
+      "No specification of Provider's insurance coverage for data breach incidents"
+    ],
+    "top_recommendation": "Negotiate to carve out data breaches and GDPR violations from the liability cap in the main agreement, or establish a separate minimum liability cap of at least €5-10 million for data protection failures before signing."
+  },
+  {
+    "contract_name": "22_sponsorship_clean.pdf",
+    "contract_type": "Event Sponsorship Agreement",
+    "overall_risk_score": 25,
+    "risk_tier": "Low",
+    "plain_english_summary": "This is a straightforward sponsorship agreement where a sponsor pays $25,000 for Gold Tier benefits at an annual conference, including booth space, passes, and a speaking slot. The contract includes reasonable protections for both parties with liability caps, cancellation refunds, and force majeure provisions.",
+    "clauses": [
+      {
+        "clause_type": "Payment Terms",
+        "finding": "Payment split 50% on signing and 50% due 30 days before event",
+        "risk_level": "Neutral",
+        "explanation": "Standard payment structure for event sponsorships that balances cash flow for organizer with some protection for sponsor by delaying half the payment until closer to event",
+        "recommendation": "Acceptable as written; ensures sponsor has some leverage if issues arise before final payment"
+      },
+      {
+        "clause_type": "Cancellation",
+        "finding": "Full refund or credit at sponsor's choice if organizer cancels event",
+        "risk_level": "Favorable",
+        "explanation": "Protects the sponsor's investment if the organizer cannot deliver the event, giving flexibility to choose refund or future credit",
+        "recommendation": "This is favorable to sponsor; no changes needed"
+      },
+      {
+        "clause_type": "Limitation of Liability",
+        "finding": "Liability capped at sponsorship amount ($25,000) with no indirect damages for either party",
+        "risk_level": "Neutral",
+        "explanation": "Both parties are protected from catastrophic losses and can only recover the actual sponsorship fee paid, which is reasonable for this type of agreement",
+        "recommendation": "Standard and balanced provision; acceptable for a $25,000 sponsorship"
+      },
+      {
+        "clause_type": "Brand Use / IP",
+        "finding": "Limited mutual logo use for event purposes only, following provided guidelines",
+        "risk_level": "Favorable",
+        "explanation": "Clearly restricts brand usage to the specific event context, preventing either party from misusing the other's trademark beyond the agreed scope",
+        "recommendation": "Good protection for both brands; ensure brand guidelines are actually provided and followed"
+      },
+      {
+        "clause_type": "Force Majeure",
+        "finding": "Neither party liable for events beyond control; pro rata refund of fees",
+        "risk_level": "Favorable",
+        "explanation": "Provides fair protection if unforeseen circumstances prevent the event, with proportional refund rather than full loss to sponsor",
+        "recommendation": "Reasonable provision especially post-pandemic; clarify what 'pro rata' means based on timing of cancellation"
+      },
+      {
+        "clause_type": "Governing Law",
+        "finding": "Tennessee law governs the agreement",
+        "risk_level": "Neutral",
+        "explanation": "Standard choice of law provision; Tennessee is a reasonable jurisdiction with predictable contract law",
+        "recommendation": "Acceptable unless sponsor is located far from Tennessee and prefers local jurisdiction; consider adding dispute resolution method"
+      }
+    ],
+    "red_flags": [
+      "No specific date or details about the 'annual conference' - event date, location, and year should be clearly identified",
+      "Missing termination rights for sponsor if organizer materially breaches (e.g., fails to provide promised benefits)",
+      "No dispute resolution mechanism specified (arbitration, mediation, or litigation venue)",
+      "Effective Date referenced but not defined in the signature block",
+      "No clear definition of what benefits constitute 'Gold Tier' or process if promised benefits are not delivered"
+    ],
+    "top_recommendation": "Add specific event details (date, location, year) and define what happens if the organizer fails to deliver the promised sponsorship benefits before accepting this agreement"
+  },
+  {
+    "contract_name": "23_consulting_retainer_clean.pdf",
+    "contract_type": "Consulting Retainer Agreement",
+    "overall_risk_score": 25,
+    "risk_tier": "Low",
+    "plain_english_summary": "This is a straightforward month-to-month consulting agreement for 20 hours of business advisory services at $4,000 per month. The terms are generally balanced and fair to both parties, with standard protections and an easy exit clause requiring only 30 days notice.",
+    "clauses": [
+      {
+        "clause_type": "Services",
+        "finding": "Consultant provides up to 20 hours per month of business advisory services",
+        "risk_level": "Neutral",
+        "explanation": "The scope is clear but 'business advisory services' is somewhat vague and could lead to disputes about what's included or excluded",
+        "recommendation": "Consider adding a brief list of specific services or examples to avoid scope creep or misunderstandings"
+      },
+      {
+        "clause_type": "Fees/Payment",
+        "finding": "Monthly retainer of $4,000 with unused hours rolling over for one month and additional hours at $200/hour",
+        "risk_level": "Favorable",
+        "explanation": "Clear pricing structure with rollover provision that's fair to the client; the hourly rate for additional work is reasonable and transparent",
+        "recommendation": "Ensure payment terms (due date, method) are clarified in writing or invoice terms"
+      },
+      {
+        "clause_type": "Termination",
+        "finding": "Month-to-month agreement with 30 days written notice required from either party",
+        "risk_level": "Favorable",
+        "explanation": "This provides excellent flexibility for both parties to exit the relationship without long-term commitment or penalties",
+        "recommendation": "No changes needed; this is a business-friendly term"
+      },
+      {
+        "clause_type": "Confidentiality",
+        "finding": "Both parties must keep confidential information private for 2 years",
+        "risk_level": "Neutral",
+        "explanation": "Standard mutual confidentiality protection, though 2 years is relatively short for sensitive business information",
+        "recommendation": "Consider extending to 3-5 years if dealing with highly sensitive trade secrets or strategic information"
+      },
+      {
+        "clause_type": "IP Ownership",
+        "finding": "Client owns deliverables upon payment; Consultant retains general methodologies",
+        "risk_level": "Favorable",
+        "explanation": "Clear work-product ownership for the client while allowing consultant to reuse their general tools and methods with other clients",
+        "recommendation": "Ensure 'general methodologies' is understood by both parties to avoid future disputes"
+      },
+      {
+        "clause_type": "Limitation of Liability",
+        "finding": "Consultant's liability is capped at fees paid in the prior 3 months",
+        "risk_level": "Risky",
+        "explanation": "This limits the consultant's maximum exposure to $12,000, which may be insufficient if their advice causes significant financial harm to the business",
+        "recommendation": "Negotiate to remove or increase the cap, or ensure adequate professional liability insurance covers the consultant"
+      },
+      {
+        "clause_type": "Independent Contractor",
+        "finding": "Consultant classified as independent contractor responsible for own taxes",
+        "risk_level": "Neutral",
+        "explanation": "Standard classification that protects both parties from employment-related obligations and tax withholding issues",
+        "recommendation": "Client should ensure consultant provides W-9 and receives 1099 at year-end for IRS compliance"
+      },
+      {
+        "clause_type": "Governing Law",
+        "finding": "Agreement governed by laws of North Carolina",
+        "risk_level": "Neutral",
+        "explanation": "Establishes clear jurisdiction for any disputes; no indication whether this favors either party",
+        "recommendation": "Confirm both parties are comfortable with North Carolina law and consider adding dispute resolution method (mediation/arbitration)"
+      }
+    ],
+    "red_flags": [
+      "Limitation of liability caps consultant exposure at only 3 months of fees ($12,000), which may be inadequate if bad advice causes significant business losses",
+      "No indemnification clause means neither party is protected if the other's actions cause third-party claims",
+      "Vague service description ('business advisory services') could lead to scope disputes",
+      "Short 2-year confidentiality period may not adequately protect long-term sensitive information"
+    ],
+    "top_recommendation": "Negotiate to increase or remove the liability cap in Section 6, and consider adding mutual indemnification protection for third-party claims"
+  },
+  {
+    "contract_name": "24_supply_risky.pdf",
+    "contract_type": "Manufacturing and Supply Agreement",
+    "overall_risk_score": 92,
+    "risk_tier": "High",
+    "plain_english_summary": "This is an extremely one-sided supply agreement that exposes the Buyer to massive financial and legal risk. The Buyer has virtually no protections, must pay for the Supplier's defects and legal claims, is locked into purchasing 100,000 units annually for 3 years with no quality guarantees, while the Supplier can walk away anytime and raise prices at will.",
+    "clauses": [
+      {
+        "clause_type": "Pricing",
+        "finding": "Supplier can increase prices with only 10 days notice; Buyer must accept or forfeit all pending orders",
+        "risk_level": "Risky",
+        "explanation": "Supplier has complete pricing control with minimal notice. If you reject a price increase, you lose all orders already placed, which could devastate your production schedule and leave you scrambling for alternatives.",
+        "recommendation": "Negotiate a price ceiling, annual increase cap (e.g., CPI + 2%), or right to terminate without penalty if prices increase beyond a threshold."
+      },
+      {
+        "clause_type": "Warranty Disclaimer",
+        "finding": "All products sold AS-IS with no warranties of merchantability or fitness for purpose",
+        "risk_level": "Risky",
+        "explanation": "You have zero guarantee that products will work or be suitable for your needs. Even if they're completely defective, you have no recourse based on implied warranties that normally protect buyers.",
+        "recommendation": "Demand at minimum a limited warranty covering defects in materials and workmanship for a reasonable period (90-180 days). This is standard in commercial supply contracts."
+      },
+      {
+        "clause_type": "Limitation of Liability",
+        "finding": "Supplier's liability capped at the price of a single defective unit, even for total product recalls",
+        "risk_level": "Risky",
+        "explanation": "If 100,000 units are defective and cause a recall costing millions, Supplier only pays for one unit. You absorb all recall costs, customer damages, and business losses. This is catastrophically inadequate.",
+        "recommendation": "Require liability cap at minimum equal to 12 months of purchases or the value of defective shipment. Product recalls and consequential damages should have separate, higher caps."
+      },
+      {
+        "clause_type": "Indemnification",
+        "finding": "Buyer must defend and indemnify Supplier for ALL product claims, even those caused by Supplier's own manufacturing defects",
+        "risk_level": "Risky",
+        "explanation": "This is backwards and unconscionable. If Supplier manufactures defective products that injure someone, YOU must pay Supplier's legal bills and any damages. You're insuring Supplier against their own negligence.",
+        "recommendation": "Completely reject this clause. Standard indemnification should be mutual, with each party covering claims arising from their own negligence or breach. Supplier must indemnify you for manufacturing defects."
+      },
+      {
+        "clause_type": "Minimum Commitment",
+        "finding": "Buyer commits to purchasing minimum 100,000 units annually or must pay the full shortfall amount",
+        "risk_level": "Risky",
+        "explanation": "You're locked into buying 100,000 units per year regardless of your actual needs, product quality, or market conditions. If demand drops or products are defective, you still owe the full purchase price for units you don't want.",
+        "recommendation": "Reduce minimum commitment significantly, add force majeure exceptions, and make commitment contingent on product quality meeting specifications. Consider a tiered structure with lower penalties."
+      },
+      {
+        "clause_type": "Termination",
+        "finding": "Supplier can terminate for convenience with 30 days notice; Buyer locked in for 3-year minimum term",
+        "risk_level": "Risky",
+        "explanation": "Supplier can walk away anytime with one month notice, leaving you scrambling for a new manufacturer. Meanwhile, you're trapped for 3 years even if quality deteriorates, prices skyrocket, or you find better alternatives.",
+        "recommendation": "Demand mutual termination rights: either both parties can terminate for convenience with equal notice (90-180 days), or neither can. Include termination rights for material breach and quality failures."
+      },
+      {
+        "clause_type": "Governing Law",
+        "finding": "Contract governed by laws of a jurisdiction designated by Supplier",
+        "risk_level": "Risky",
+        "explanation": "Supplier chooses the legal jurisdiction unilaterally, potentially selecting one inconvenient or unfavorable to you. This increases litigation costs and may apply laws more favorable to suppliers.",
+        "recommendation": "Negotiate mutual agreement on jurisdiction, preferably your home jurisdiction or a neutral location. At minimum, specify the actual jurisdiction in the contract rather than leaving it to Supplier's discretion."
+      }
+    ],
+    "red_flags": [
+      "Buyer must indemnify Supplier even for Supplier's own manufacturing defects - completely unreasonable risk transfer",
+      "Liability capped at single unit price even for mass recalls affecting 100,000+ units",
+      "No product warranties whatsoever - AS-IS sale with no quality guarantees",
+      "Asymmetric termination: Supplier exits anytime, Buyer locked in for 3 years with 100K unit annual minimum",
+      "Unilateral pricing power with 10-day notice and forfeiture penalty",
+      "Supplier unilaterally selects governing law jurisdiction"
+    ],
+    "top_recommendation": "Do not sign this agreement under any circumstances. The indemnification clause alone could bankrupt your company if defective products cause harm. Engage legal counsel to completely restructure this contract with balanced risk allocation, meaningful warranties, mutual termination rights, and standard supplier liability provisions before proceeding."
+  },
+  {
+    "contract_name": "25_marketing_moderate.pdf",
+    "contract_type": "Marketing Services Agreement",
+    "overall_risk_score": 52,
+    "risk_tier": "Medium",
+    "plain_english_summary": "This is a marketing services agreement for social media and paid advertising management at $6,000/month plus ad spend costs. The contract auto-renews annually with 60-day notice required to cancel, and the agency's financial liability is capped at the last 3 months of fees while they don't guarantee any specific marketing results.",
+    "clauses": [
+      {
+        "clause_type": "Auto-Renewal",
+        "finding": "Contract automatically renews for 12-month terms unless either party provides 60 days advance notice",
+        "risk_level": "Risky",
+        "explanation": "You could be locked into another full year if you miss the 60-day notice window. This is easy to overlook and could trap you in an underperforming relationship for 12 more months.",
+        "recommendation": "Set a calendar reminder 75 days before each renewal date. Consider negotiating for 30-day notice or month-to-month terms after the initial period."
+      },
+      {
+        "clause_type": "Limitation of Liability",
+        "finding": "Agency liability capped at fees paid in the prior 3 months, excluding ad spend",
+        "risk_level": "Risky",
+        "explanation": "If the agency mismanages your ad campaigns and wastes your ad budget, you can only recover up to $18,000 (3 months × $6,000) even if ad spend losses are much higher. The ad spend exclusion is particularly problematic.",
+        "recommendation": "Negotiate to include ad spend in the liability cap, especially if you're planning significant advertising budgets. Consider a minimum cap of $50,000-$100,000 or 12 months of fees."
+      },
+      {
+        "clause_type": "Performance",
+        "finding": "Agency explicitly does not guarantee any specific results; all metrics are targets only",
+        "risk_level": "Risky",
+        "explanation": "You have no contractual recourse if the agency fails to deliver meaningful results. They could perform poorly indefinitely without breaching the contract.",
+        "recommendation": "Add performance-based KPIs with minimum thresholds (e.g., engagement rates, conversion metrics) that trigger review meetings or early termination rights if consistently missed."
+      },
+      {
+        "clause_type": "IP Ownership",
+        "finding": "Client owns final approved creative assets upon payment; Agency retains templates and analytics tools",
+        "risk_level": "Neutral",
+        "explanation": "You'll own the finished work you pay for, but the agency keeps their internal processes and tools. This is standard, though 'upon payment' means unpaid invoices could create ownership disputes.",
+        "recommendation": "Ensure timely payment to secure ownership. Clarify what happens to assets if you terminate mid-project with partial payment."
+      },
+      {
+        "clause_type": "Fees/Payment",
+        "finding": "Monthly fee of $6,000 plus ad spend at cost, invoices due net 15",
+        "risk_level": "Neutral",
+        "explanation": "Pricing structure is clear with ad spend passed through at cost. The 15-day payment term is relatively tight but manageable for most businesses.",
+        "recommendation": "Request net 30 terms if your cash flow cycle requires it. Confirm how ad spend is documented and that you receive transparent reporting on all charges."
+      },
+      {
+        "clause_type": "Confidentiality",
+        "finding": "Both parties must protect confidential information during the term and for 2 years after",
+        "risk_level": "Favorable",
+        "explanation": "Standard mutual protection that safeguards your business information, marketing strategies, and customer data. The 2-year post-termination period is reasonable.",
+        "recommendation": "Ensure your proprietary customer lists, marketing strategies, and business data are clearly marked as confidential when shared."
+      },
+      {
+        "clause_type": "Governing Law",
+        "finding": "Contract is governed by Utah state law",
+        "risk_level": "Neutral",
+        "explanation": "Utah law will apply to any disputes. This is only a concern if you're located far from Utah and would prefer your own state's laws or if Utah has unfavorable consumer protection laws.",
+        "recommendation": "If you're not in Utah, consider negotiating for your home state's law or adding that disputes will be handled in your jurisdiction to avoid travel costs."
+      },
+      {
+        "clause_type": "Termination",
+        "finding": "No explicit termination for cause or convenience clause beyond the 60-day renewal notice",
+        "risk_level": "Risky",
+        "explanation": "You may be locked in for the full 12-month term with no ability to exit early even if the agency performs poorly or your business needs change. This creates significant inflexibility.",
+        "recommendation": "Add a termination for convenience clause allowing either party to exit with 30-60 days notice and pro-rated final payment. Include immediate termination rights for material breach."
+      }
+    ],
+    "red_flags": [
+      "Auto-renewal with 60-day notice requirement could trap you in underperforming relationship for another year",
+      "Liability cap excludes ad spend, meaning wasted advertising budget cannot be recovered beyond the $18,000 fee cap",
+      "No performance guarantees or minimum standards means agency has no accountability for results",
+      "Missing termination for cause or convenience provisions may lock you into full 12-month terms"
+    ],
+    "top_recommendation": "Before signing, negotiate for: (1) termination for convenience with 30-60 days notice, (2) liability cap that includes ad spend or is set at a reasonable minimum threshold, and (3) performance metrics with review triggers that allow early exit if targets are consistently missed."
   }
 ]
