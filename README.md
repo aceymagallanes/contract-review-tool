@@ -36,27 +36,70 @@ Running the tool against a set of sample contracts produces a summary like this:
 
 ---
 
+## ✅ Before you start (prerequisites)
+
+You'll need three things:
+
+1. **Python 3** installed — check by running `python3 --version` in a terminal. (Don't have it? Download from [python.org](https://www.python.org/downloads/).)
+2. **An Anthropic API key** — sign up at [console.anthropic.com](https://console.anthropic.com) → **Settings → API Keys → Create Key**. (The analysis runs on Anthropic's paid API — typically a fraction of a cent per contract.)
+3. **The contracts you want analyzed**, as PDF files.
+
+> **Note:** This is a standalone command-line tool. You do **not** need the Claude Code app to run it — only Python and an API key.
+
+---
+
 ## 🚀 How to run it
 
-### 1. Install the requirements
+### 1. Download the project
+Click the green **Code** button above → **Download ZIP**, then unzip it. (Or `git clone` it if you use git.)
+
+Open a terminal **inside the project folder**:
+```bash
+cd path/to/contract-review-tool
+```
+
+### 2. Install the requirements
 ```bash
 pip3 install -r requirements.txt
 ```
+This installs the three libraries the tool needs (`anthropic`, `pdfplumber`, `python-dotenv`).
 
-### 2. Add your Anthropic API key
+### 3. Add your Anthropic API key
 Create a file named `.env` in the project folder (copy the format from `.env.example`):
 ```
 ANTHROPIC_API_KEY=your_key_here
 ```
-Get a key from [console.anthropic.com](https://console.anthropic.com). Your `.env` is git-ignored, so your key never gets committed.
+Replace `your_key_here` with your real key (it starts with `sk-ant-`). Your `.env` is git-ignored, so your key never gets committed or shared.
 
-### 3. Add contracts and run
-Drop your PDF contracts into the `contracts/` folder, then:
+### 4. Add your contracts
+Drop your PDF contracts into the **`contracts/`** folder. You can add as many as you like — the tool reads every PDF in there.
+
+### 5. Run it
 ```bash
 python3 analyze_contracts.py
 ```
 
-Results are written to `results.json` and `results.csv`.
+You'll see live progress in the terminal:
+```
+-> Processing: vendor_agreement.pdf
+   Risk tier: High  |  Score: 92/100
+```
+
+When it finishes, two result files appear in the folder:
+- **`results.json`** — full detail (every clause, red flag, and recommendation)
+- **`results.csv`** — one row per contract; opens in Excel, Numbers, or Google Sheets
+
+---
+
+## 🛠️ Troubleshooting
+
+| Problem | Fix |
+|---|---|
+| `No API key found` | Make sure the file is named exactly `.env` (not `.env.txt`) and contains `ANTHROPIC_API_KEY=...` |
+| `No PDF files found` | Put your `.pdf` files inside the `contracts/` folder, then run again |
+| A contract is "Skipped: no readable text" | That PDF is a scanned image. It needs OCR (a planned future feature) |
+| `externally-managed-environment` error on install | Use a virtual environment: `python3 -m venv venv && source venv/bin/activate`, then re-run the install |
+| `command not found: python3` | Python isn't installed — get it from [python.org](https://www.python.org/downloads/) |
 
 ---
 
