@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contract Risk Intelligence — The Fine Print Files</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+<style>
+  :root{
+    --paper:#F6F5FB;
+    --ink:#15151F;
+    --ink-soft:#42424F;
+    --muted:#8C8C9C;
+    --line:#E8E6F1;
+    --card:#FFFFFF;
+    --accent:#5B4BE0;          /* interactive chrome only */
+    --accent-soft:#EEEBFC;
+    --low:#2E7D52;  --low-bg:#E6F2EB;
+    --med:#D98A2B;  --med-bg:#FBEFE0;
+    --high:#C0392B; --high-bg:#FBE7E4;
+    --shadow:0 10px 30px -12px rgba(28,22,60,.18);
+    --shadow-sm:0 2px 8px rgba(28,22,60,.06);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; font-family:'Inter',sans-serif; color:var(--ink);
+    background:var(--paper);
+    background-image:
+      radial-gradient(60vw 60vw at 88% -8%, rgba(192,57,43,.07), transparent 60%),
+      radial-gradient(50vw 50vw at -10% 12%, rgba(46,125,82,.07), transparent 60%),
+      radial-gradient(55vw 55vw at 50% 120%, rgba(91,75,224,.07), transparent 60%);
+    background-attachment:fixed;
+    -webkit-font-smoothing:antialiased; line-height:1.55;
+  }
+  h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif; letter-spacing:-.02em;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 22px;}
+
+  .kicker{
+    display:inline-flex; align-items:center; gap:9px;
+    font-size:.95rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--ink); background:var(--accent-soft); padding:9px 15px; border-radius:11px;
+  }
+  .kicker .num{opacity:1; color:var(--accent); font-weight:800;}
+  .section-head .kicker{font-size:1.05rem; letter-spacing:.06em;}
+
+  /* reveal */
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1; transform:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:74px 0 26px; text-align:left;}
+  .hero .badge-row{display:flex; align-items:center; gap:12px; margin-bottom:22px; flex-wrap:wrap;}
+  .brandmark{
+    width:38px;height:38px;border-radius:11px;flex-shrink:0;
+    background:linear-gradient(135deg,#2b2350,#5B4BE0);display:grid;place-items:center;box-shadow:var(--shadow-sm);
+  }
+  .brandmark svg{width:20px;height:20px;}
+  .hero h1{font-size:clamp(2.3rem,6vw,4rem); line-height:1.02; margin:0 0 18px; font-weight:700;}
+  .hero h1 .grad{
+    background:linear-gradient(100deg,var(--low),var(--med) 52%,var(--high));
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .hero .lede{font-size:clamp(1.02rem,2.4vw,1.22rem); color:var(--ink-soft); max-width:640px; margin:0 0 30px;}
+  .hero .lede b{color:var(--ink); font-weight:700;}
+
+  .risk-ruler{height:14px; border-radius:999px; background:linear-gradient(90deg,var(--low),var(--med) 50%,var(--high)); position:relative; max-width:660px; box-shadow:inset 0 0 0 1px rgba(0,0,0,.04);}
+  .ticks{display:flex; justify-content:space-between; max-width:660px; margin-top:8px; font-size:.72rem; color:var(--muted); font-weight:600;}
+
+  /* ---------- SECTION SHELL ---------- */
+  section.block{padding:50px 0;}
+  .section-head{margin-bottom:26px;}
+  .section-head h2{font-size:clamp(1.5rem,3.4vw,2.1rem); margin:14px 0 8px; font-weight:700;}
+  .section-head p{color:var(--ink-soft); margin:0; max-width:620px; font-size:1rem;}
+
+  /* ---------- VERDICT (stat strip + tier bar) ---------- */
+  .stat-strip{display:flex; gap:0; flex-wrap:wrap; border:1px solid var(--line); background:var(--card); border-radius:20px; box-shadow:var(--shadow-sm); overflow:hidden;}
+  .stat{flex:1 1 0; min-width:150px; padding:24px 26px; border-right:1px solid var(--line);}
+  .stat:last-child{border-right:none;}
+  .stat .n{font-family:'Space Grotesk'; font-size:2.7rem; font-weight:700; line-height:1; letter-spacing:-.03em;}
+  .stat .n.high{color:var(--high);}
+  .stat .l{font-size:.78rem; text-transform:uppercase; letter-spacing:.07em; color:var(--muted); font-weight:700; margin-top:10px;}
+  .stat .sub{font-size:.82rem; color:var(--ink-soft); margin-top:4px;}
+
+  .tierbar-wrap{margin-top:22px;}
+  .tierbar{display:flex; height:46px; border-radius:14px; overflow:hidden; box-shadow:var(--shadow-sm); border:1px solid var(--line);}
+  .tierseg{display:flex; align-items:center; justify-content:center; gap:8px; color:#fff; font-weight:700; font-size:.86rem; min-width:0; width:0; transition:width 1s cubic-bezier(.2,.7,.2,1); white-space:nowrap; overflow:hidden;}
+  .tierseg.high{background:var(--high);} .tierseg.med{background:var(--med);} .tierseg.low{background:var(--low);}
+  .tierbar-legend{display:flex; gap:18px; margin-top:12px; flex-wrap:wrap; font-size:.84rem; color:var(--ink-soft);}
+  .tierbar-legend .it{display:flex; align-items:center; gap:7px;}
+  .tierbar-legend .dot{width:10px;height:10px;border-radius:50%;}
+  .tier-thresholds{margin:16px 0 2px; padding-top:15px; border-top:1px dashed var(--line); font-size:.84rem; color:var(--ink-soft); line-height:1.6; max-width:760px;}
+  .tier-thresholds b{color:var(--ink); font-weight:800;}
+
+  /* ---------- SPECTRUM (beeswarm) ---------- */
+  .spectrum-card{background:var(--card); border:1px solid var(--line); border-radius:22px; padding:26px 26px 18px; box-shadow:var(--shadow);}
+  .spectrum{position:relative; width:100%; height:260px; margin-top:6px;}
+  .zone-bands{position:absolute; inset:0; display:flex; border-radius:14px; overflow:hidden; opacity:.5;}
+  .zone-bands .z{height:100%;}
+  .zone-bands .z.low{background:linear-gradient(180deg,transparent,var(--low-bg));}
+  .zone-bands .z.med{background:linear-gradient(180deg,transparent,var(--med-bg));}
+  .zone-bands .z.high{background:linear-gradient(180deg,transparent,var(--high-bg));}
+  .bubble{
+    position:absolute; border-radius:50%; cursor:pointer; transform:translate(-50%,-50%) scale(0);
+    transition:transform .55s cubic-bezier(.34,1.56,.64,1), box-shadow .2s, filter .2s; border:2px solid #fff;
+    display:grid; place-items:center; box-shadow:0 4px 10px rgba(28,22,60,.18);
+  }
+  .spectrum.go .bubble{transform:translate(-50%,-50%) scale(1);}
+  .bubble:hover{filter:brightness(1.06); box-shadow:0 0 0 4px rgba(91,75,224,.18),0 6px 16px rgba(28,22,60,.28); z-index:5;}
+  .bubble .bn{font-size:.66rem; font-weight:800; color:#fff; pointer-events:none;}
+  .axis{position:relative; height:1px; background:var(--line); margin-top:8px;}
+  .axis .lab{position:absolute; top:8px; transform:translateX(-50%); font-size:.72rem; color:var(--muted); font-weight:600;}
+  .axis .zone-lab{position:absolute; top:8px; transform:translateX(-50%); font-size:.72rem; font-weight:800; letter-spacing:.04em; text-transform:uppercase;}
+  .spectrum-hint{display:flex; gap:18px; flex-wrap:wrap; margin-top:34px; font-size:.8rem; color:var(--muted);}
+  .spectrum-hint .it{display:flex;align-items:center;gap:7px;}
+  .spectrum-hint .dot{width:11px;height:11px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.2);}
+  .spectrum-caption{margin:16px 0 2px; padding-top:15px; border-top:1px dashed var(--line); font-size:.86rem; color:var(--ink-soft); line-height:1.65; max-width:760px;}
+  .spectrum-caption b{color:var(--ink); font-weight:700;}
+
+  .tooltip{
+    position:fixed; z-index:60; background:var(--ink); color:#fff; padding:10px 13px; border-radius:11px;
+    font-size:.8rem; pointer-events:none; opacity:0; transform:translateY(4px); transition:opacity .15s, transform .15s;
+    box-shadow:0 12px 30px rgba(0,0,0,.3); max-width:230px;
+  }
+  .tooltip.show{opacity:1; transform:none;}
+  .tooltip .tt-name{font-weight:700; font-family:'Space Grotesk'; margin-bottom:3px;}
+  .tooltip .tt-meta{color:#C9C7DA; font-size:.74rem;}
+  .tooltip .tt-score{font-weight:700;}
+
+  /* ---------- LEADERBOARD ---------- */
+  .leaders{display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:16px;}
+  .leader{
+    background:var(--card); border:1px solid var(--line); border-radius:18px; padding:20px; cursor:pointer;
+    box-shadow:var(--shadow-sm); transition:transform .2s, box-shadow .2s; position:relative; overflow:hidden;
+  }
+  .leader:hover{transform:translateY(-4px); box-shadow:var(--shadow);}
+  .leader .rank{font-family:'Space Grotesk'; font-size:3.2rem; font-weight:700; line-height:.8; color:var(--line); position:absolute; top:14px; right:18px;}
+  .leader .quip{font-size:.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.05em; padding:4px 9px; border-radius:7px; display:inline-block;}
+  .leader .lname{font-family:'Space Grotesk'; font-weight:700; font-size:1.04rem; margin:12px 0 3px; color:var(--ink);}
+  .leader .ltype{font-size:.82rem; color:var(--muted); margin-bottom:14px;}
+  .leader .score-line{display:flex; align-items:baseline; gap:8px;}
+  .leader .score-line .sc{font-family:'Space Grotesk'; font-size:1.8rem; font-weight:700;}
+  .leader .score-line .of{font-size:.78rem; color:var(--muted);}
+  .leader .flags{font-size:.8rem; color:var(--ink-soft); margin-top:8px; display:flex; align-items:center; gap:6px;}
+  .leader .open-cue{font-size:.76rem; color:var(--accent); font-weight:600; margin-top:14px; display:flex; align-items:center; gap:5px;}
+
+  /* ---------- CLAUSE DANGER ---------- */
+  .danger-card{background:var(--card); border:1px solid var(--line); border-radius:22px; padding:26px 28px; box-shadow:var(--shadow-sm);}
+  .danger-row{display:grid; grid-template-columns:190px 1fr 64px; align-items:center; gap:14px; padding:11px 0; border-bottom:1px dashed var(--line);}
+  .danger-row:last-child{border-bottom:none;}
+  .danger-row .dl{font-weight:600; font-size:.9rem; color:var(--ink);}
+  .danger-row .track{height:24px; background:#F1EFF8; border-radius:8px; overflow:hidden; position:relative;}
+  .danger-row .fill{height:100%; background:linear-gradient(90deg,#E0644F,var(--high)); border-radius:8px; width:0; transition:width 1s cubic-bezier(.2,.7,.2,1);}
+  .danger-row .dc{font-size:.82rem; color:var(--ink-soft); text-align:right; font-variant-numeric:tabular-nums;}
+  .danger-row .dc b{color:var(--high); font-weight:700;}
+
+  /* ---------- TABLE ---------- */
+  .file-card{background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow-sm); overflow:hidden;}
+  .toolbar{display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:18px 20px; border-bottom:1px solid var(--line);}
+  .filters{display:flex; gap:6px; flex-wrap:wrap;}
+  .fbtn{border:1px solid var(--line); background:#fff; color:var(--ink-soft); font:inherit; font-size:.82rem; font-weight:600; padding:7px 13px; border-radius:999px; cursor:pointer; transition:.15s; display:inline-flex; align-items:center; gap:7px;}
+  .fbtn:hover{border-color:var(--accent); color:var(--accent);}
+  .fbtn.active{background:var(--ink); border-color:var(--ink); color:#fff;}
+  .fbtn .pip{width:8px;height:8px;border-radius:50%;}
+  .fbtn .count{opacity:.6;}
+  .search-wrap{margin-left:auto; position:relative;}
+  .search-wrap input{font:inherit; font-size:.85rem; padding:8px 12px 8px 33px; border:1px solid var(--line); border-radius:10px; width:220px; max-width:46vw;}
+  .search-wrap input:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(91,75,224,.12);}
+  .search-wrap svg{position:absolute; left:11px; top:50%; transform:translateY(-50%); width:15px;height:15px; color:var(--muted);}
+
+  .tscroll{overflow-x:auto;}
+  table.ct{width:100%; border-collapse:collapse; min-width:680px;}
+  table.ct th{text-align:left; font-size:.7rem; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-weight:700; padding:13px 18px; border-bottom:1px solid var(--line); background:#FBFAFE; white-space:nowrap; user-select:none;}
+  table.ct th.sortable{cursor:pointer;} table.ct th.sortable:hover{color:var(--accent);}
+  table.ct th .ar{opacity:.35; margin-left:3px;} table.ct th.sorted .ar{opacity:1; color:var(--accent);}
+  table.ct th.num{text-align:center;}
+  table.ct tbody tr{border-bottom:1px solid var(--line); cursor:pointer; transition:background .12s;}
+  table.ct tbody tr:hover{background:#FAF9FE;}
+  table.ct td{padding:13px 18px; font-size:.88rem; vertical-align:middle;}
+  .cn{font-weight:600; color:var(--ink); display:flex; align-items:center; gap:9px;}
+  .cn .ar{width:15px;height:15px;color:var(--muted);}
+  .ctype{color:var(--muted); font-size:.84rem;}
+  .badge{display:inline-flex; align-items:center; gap:6px; font-size:.75rem; font-weight:700; padding:4px 10px; border-radius:999px; white-space:nowrap;}
+  .badge .pip{width:7px;height:7px;border-radius:50%;}
+  .badge.low{background:var(--low-bg); color:var(--low);} .badge.low .pip{background:var(--low);}
+  .badge.medium{background:var(--med-bg); color:var(--med);} .badge.medium .pip{background:var(--med);}
+  .badge.high{background:var(--high-bg); color:var(--high);} .badge.high .pip{background:var(--high);}
+  .scell{display:flex; align-items:center; gap:10px; min-width:120px;}
+  .snum{font-family:'Space Grotesk'; font-weight:700; width:28px; font-variant-numeric:tabular-nums;}
+  .strack{flex:1; height:7px; background:#EFEDF7; border-radius:999px; overflow:hidden; min-width:54px;}
+  .sfill{height:100%; border-radius:999px;}
+  .pnum{display:inline-grid; place-items:center; min-width:26px; height:24px; padding:0 7px; border-radius:7px; font-size:.82rem; font-weight:700; background:#EFEDF7; color:var(--ink-soft); font-variant-numeric:tabular-nums;}
+  .pnum.flag{background:var(--high-bg); color:var(--high);} .pnum.zero{background:#F3F2F8; color:#B2B0C2;}
+  .empty-row td{padding:38px; text-align:center; color:var(--muted);}
+
+  /* ---------- DRAWER ---------- */
+  .overlay{position:fixed; inset:0; background:rgba(21,21,31,.42); backdrop-filter:blur(2px); opacity:0; pointer-events:none; transition:opacity .3s; z-index:50;}
+  .overlay.show{opacity:1; pointer-events:auto;}
+  .drawer{position:fixed; top:0; right:0; height:100%; width:480px; max-width:92vw; background:var(--paper); box-shadow:-20px 0 50px rgba(21,21,31,.25); transform:translateX(102%); transition:transform .35s cubic-bezier(.2,.7,.2,1); z-index:55; display:flex; flex-direction:column;}
+  .drawer.show{transform:none;}
+  .drawer-head{padding:24px 26px 18px; border-bottom:1px solid var(--line); position:relative;}
+  .drawer-close{position:absolute; top:20px; right:20px; width:34px;height:34px; border-radius:10px; border:1px solid var(--line); background:#fff; cursor:pointer; display:grid; place-items:center; color:var(--ink-soft);}
+  .drawer-close:hover{color:var(--ink); border-color:var(--ink-soft);}
+  .drawer-head .dtype{font-size:.78rem; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.05em;}
+  .drawer-head .dname{font-family:'Space Grotesk'; font-weight:700; font-size:1.3rem; margin:6px 50px 14px 0; line-height:1.15;}
+  .drawer-meta{display:flex; align-items:center; gap:16px;}
+  .ring{position:relative; width:78px; height:78px; flex-shrink:0;}
+  .ring svg{transform:rotate(-90deg);}
+  .ring .rv{position:absolute; inset:0; display:grid; place-items:center; font-family:'Space Grotesk'; font-weight:700; font-size:1.3rem;}
+  .drawer-body{padding:20px 26px 40px; overflow-y:auto;}
+  .d-sec-l{font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-weight:700; margin:0 0 9px;}
+  .summary{background:var(--card); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:12px; padding:14px 16px; font-size:.9rem; color:var(--ink); margin-bottom:22px;}
+  .redflags{background:var(--high-bg); border:1px solid #F1C9C4; border-radius:12px; padding:14px 16px; margin-bottom:22px;}
+  .redflags .d-sec-l{color:var(--high);}
+  .redflags ul{margin:0; padding:0; list-style:none; display:grid; gap:9px;}
+  .redflags li{display:flex; gap:9px; font-size:.86rem; color:#7A2820; align-items:flex-start;}
+  .redflags li svg{width:15px;height:15px;flex-shrink:0;margin-top:2px;color:var(--high);}
+  .clause{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:13px 15px; margin-bottom:10px;}
+  .clause .top{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:7px;}
+  .clause .ct2{font-family:'Space Grotesk'; font-weight:700; font-size:.9rem; color:var(--ink);}
+  .chip{display:inline-flex; align-items:center; gap:6px; font-size:.7rem; font-weight:700; padding:3px 9px; border-radius:6px; white-space:nowrap;}
+  .chip .pip{width:6px;height:6px;border-radius:50%;}
+  .chip.risky{background:var(--high-bg); color:var(--high);} .chip.risky .pip{background:var(--high);}
+  .chip.neutral{background:#EFEDF7; color:var(--ink-soft);} .chip.neutral .pip{background:var(--ink-soft);}
+  .chip.favorable{background:var(--low-bg); color:var(--low);} .chip.favorable .pip{background:var(--low);}
+  .clause .finding{font-size:.85rem; color:var(--ink-soft); margin-bottom:8px;}
+  .clause .rec{font-size:.83rem; color:var(--ink); display:flex; gap:7px; align-items:flex-start;}
+  .clause .rec svg{width:14px;height:14px;flex-shrink:0;margin-top:3px;color:var(--accent);}
+  .clause .rec b{color:var(--accent);}
+  .no-detail{font-size:.86rem; color:var(--muted); font-style:italic;}
+
+  /* ---------- STATES ---------- */
+  .state{padding:90px 24px; text-align:center;}
+  .spinner{width:34px;height:34px;border:3px solid var(--line);border-top-color:var(--accent);border-radius:50%;margin:0 auto 16px;animation:spin .8s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .state h3{margin:0 0 6px; font-family:'Space Grotesk';}
+  .state p{margin:0 auto; color:var(--muted); max-width:480px; font-size:.9rem;}
+  .state code{background:#EFEDF7; padding:2px 7px; border-radius:5px; color:var(--accent); font-size:.85em;}
+
+  footer{padding:40px 0 60px; text-align:center; color:var(--muted); font-size:.8rem;}
+
+  @media(max-width:720px){
+    .danger-row{grid-template-columns:130px 1fr 50px; gap:10px;}
+    .stat{border-right:none; border-bottom:1px solid var(--line);}
+    .stat:last-child{border-bottom:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- LOADING / ERROR -->
+<div id="loading" class="state">
+  <div class="spinner"></div>
+  <h3>Preparing the assessment…</h3>
+  <p>Loading <code>results.csv</code> &amp; <code>results.json</code></p>
+</div>
+<div id="error" class="state" hidden>
+  <div style="font-size:1.8rem;margin-bottom:8px;">⚠️</div>
+  <h3>Couldn't load the data</h3>
+  <p id="error-msg"></p>
+</div>
+
+<main id="app" hidden>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="badge-row reveal">
+        <div class="brandmark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 7l-2 6a4 4 0 0 0 8 0L9 7M19 7l-2 6a4 4 0 0 0 8 0l-2-6M3 7h18"/></svg>
+        </div>
+        <span class="kicker"><span class="num">●</span> Contract Intelligence Report</span>
+      </div>
+      <h1 class="reveal">Know the risk<br><span class="grad">before you sign.</span></h1>
+      <p class="lede reveal">An AI risk analyst reviewed <b><span id="h-total">0</span> contracts</b> in detail, identifying
+        <b><span id="h-flags">0</span> red flags</b> across clauses that are easily overlooked. This report summarizes the findings.</p>
+      <div class="reveal">
+        <div class="risk-ruler"></div>
+        <div class="ticks">
+          <span>0 · Low risk</span><span>50 · Moderate</span><span>100 · Critical</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 01 VERDICT -->
+  <section class="block">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker"><span class="num">01</span> Executive Summary</span>
+        <h2>An overview of portfolio risk.</h2>
+        <p id="verdict-line"></p>
+      </div>
+      <div class="stat-strip reveal">
+        <div class="stat"><div class="n" id="s-total">0</div><div class="l">Reviewed</div><div class="sub">contracts analyzed</div></div>
+        <div class="stat"><div class="n high" id="s-high">0</div><div class="l">High-Risk</div><div class="sub" id="s-high-sub"></div></div>
+        <div class="stat"><div class="n" id="s-avg">0</div><div class="l">Avg Risk Score</div><div class="sub">out of 100</div></div>
+        <div class="stat"><div class="n" id="s-flags">0</div><div class="l">Red Flags</div><div class="sub" id="s-flags-sub"></div></div>
+      </div>
+      <div class="tierbar-wrap reveal">
+        <div class="tierbar" id="tierbar"></div>
+        <div class="tierbar-legend" id="tierbar-legend"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 SPECTRUM -->
+  <section class="block">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker"><span class="num">02</span> Risk Distribution</span>
+        <h2>How each contract is positioned.</h2>
+        <p>Each contract is plotted by its overall risk score and scaled by the number of red flags identified. Hover for a summary, or select a contract to open its full assessment.</p>
+      </div>
+      <div class="spectrum-card reveal">
+        <div class="spectrum" id="spectrum">
+          <div class="zone-bands"><div class="z low" style="width:40%"></div><div class="z med" style="width:30%"></div><div class="z high" style="width:30%"></div></div>
+        </div>
+        <div class="axis" id="axis"></div>
+        <div class="spectrum-hint">
+          <span class="it"><span class="dot" style="background:var(--low)"></span>Low risk</span>
+          <span class="it"><span class="dot" style="background:var(--med)"></span>Medium</span>
+          <span class="it"><span class="dot" style="background:var(--high)"></span>High</span>
+          <span class="it" style="margin-left:auto;">◯ Larger bubble = more red flags</span>
+        </div>
+        <p class="spectrum-caption"><b>How to read this chart.</b> Each bubble represents a single contract. Its position along the horizontal axis reflects the overall risk score, from 0 to 100, with contracts positioned further to the right meriting closer review. Color indicates the risk tier, while larger bubbles denote a greater number of red flags identified. Where contracts share a similar score, they are spaced vertically for legibility; vertical placement carries no analytical significance.</p>
+        <p class="tier-thresholds"><b>Risk tiers:</b> Low 0-39 · Medium 40-69 · High 70-100.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 LEADERBOARD -->
+  <section class="block">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker"><span class="num">03</span> Priority Contracts</span>
+        <h2>The contracts requiring the closest attention.</h2>
+        <p>Ranked by overall risk score. Select any contract to review its specific findings.</p>
+      </div>
+      <div class="leaders reveal" id="leaders"></div>
+    </div>
+  </section>
+
+  <!-- 04 CLAUSE DANGER -->
+  <section class="block" id="danger-section" hidden>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker"><span class="num">04</span> Recurring Risk Areas</span>
+        <h2>The clause types flagged most frequently.</h2>
+        <p>Across the portfolio, these clause categories were most often identified as <b>Risky</b> — indicating where review and negotiation efforts are best focused.</p>
+      </div>
+      <div class="danger-card reveal" id="danger-list"></div>
+    </div>
+  </section>
+
+  <!-- 05 FULL FILE -->
+  <section class="block">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker"><span class="num">05</span> Contract Register</span>
+        <h2>The complete contract register.</h2>
+        <p>Sort, filter, or search the full portfolio. Select any row to open its complete risk assessment.</p>
+      </div>
+      <div class="file-card reveal">
+        <div class="toolbar">
+          <div class="filters" id="filters"></div>
+          <div class="search-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="search" id="search" placeholder="Search contracts…" />
+          </div>
+        </div>
+        <div class="tscroll">
+          <table class="ct">
+            <thead><tr>
+              <th class="sortable" data-key="contract_name">Contract <span class="ar"></span></th>
+              <th class="sortable" data-key="contract_type">Type <span class="ar"></span></th>
+              <th class="sortable" data-key="risk_tier">Tier <span class="ar"></span></th>
+              <th class="sortable sorted" data-key="overall_risk_score">Score <span class="ar">▼</span></th>
+              <th class="sortable num" data-key="risky_clause_count">Risky <span class="ar"></span></th>
+              <th class="sortable num" data-key="red_flag_count">Flags <span class="ar"></span></th>
+            </tr></thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Contract Risk Intelligence · generated from <code style="background:#EFEDF7;padding:1px 6px;border-radius:4px;">results.csv</code> + <code style="background:#EFEDF7;padding:1px 6px;border-radius:4px;">results.json</code></footer>
+</main>
+
+<!-- DRAWER -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-head">
+    <button class="drawer-close" id="drawer-close" aria-label="Close">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="dtype" id="d-type"></div>
+    <div class="dname" id="d-name"></div>
+    <div class="drawer-meta">
+      <div class="ring" id="d-ring"></div>
+      <div>
+        <div id="d-badge"></div>
+        <div id="d-quip" style="font-size:.82rem;font-weight:700;margin-top:8px;"></div>
+      </div>
+    </div>
+  </div>
+  <div class="drawer-body" id="d-body"></div>
+</aside>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+(function(){
+  "use strict";
+  var rows=[], detailByName={}, hasJson=false;
+  var sortKey="overall_risk_score", sortDir=-1, tierFilter="All", searchTerm="";
+  var TIERS=["High","Medium","Low"];
+  var TC={Low:"#2E7D52",Medium:"#D98A2B",High:"#C0392B"};
+  var TCLASS={Low:"low",Medium:"medium",High:"high"};
+  var $=function(id){return document.getElementById(id);};
+  function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+  function num(v){var n=parseInt(v,10);return isNaN(n)?0:n;}
+  function tierFromScore(score){score=num(score);return score<=39?"Low":(score<=69?"Medium":"High");}
+  function quip(score){
+    if(score>=85)return {t:"Critical",c:"var(--high)",bg:"var(--high-bg)"};
+    if(score>=70)return {t:"High concern",c:"var(--high)",bg:"var(--high-bg)"};
+    if(score>=55)return {t:"Elevated",c:"var(--med)",bg:"var(--med-bg)"};
+    if(score>=40)return {t:"Moderate",c:"var(--med)",bg:"var(--med-bg)"};
+    if(score>=25)return {t:"Low concern",c:"var(--low)",bg:"var(--low-bg)"};
+    return {t:"Minimal",c:"var(--low)",bg:"var(--low-bg)"};
+  }
+
+  // ---------- LOAD ----------
+  function init(){
+    var csvP=fetch("results.csv").then(function(r){if(!r.ok)throw new Error("results.csv (HTTP "+r.status+")");return r.text();});
+    var jsonP=fetch("results.json").then(function(r){return r.ok?r.json():null;}).catch(function(){return null;});
+    Promise.all([csvP,jsonP]).then(function(res){build(res[0],res[1]);}).catch(function(e){showError(e.message);});
+  }
+  function showError(msg){
+    $("loading").hidden=true; $("error").hidden=false;
+    $("error-msg").innerHTML="Tried to read <code>"+esc(msg)+"</code> but it didn't load. This page must be opened over a local server (browsers block file reads from <code>file://</code>). From the project folder run <code>python3 -m http.server</code>, then visit <code>http://localhost:8000</code>.";
+  }
+  function build(csvText,jsonData){
+    var parsed=Papa.parse(csvText,{header:true,skipEmptyLines:true});
+    var data=(parsed.data||[]).filter(function(r){return r.contract_name;});
+    if(!data.length){showError("No contracts found in results.csv");return;}
+    if(Array.isArray(jsonData)&&jsonData.length){hasJson=true;jsonData.forEach(function(d){if(d&&d.contract_name)detailByName[d.contract_name]=d;});}
+    rows=data.map(function(r){return {
+      contract_name:r.contract_name, contract_type:r.contract_type||"—",
+      overall_risk_score:num(r.overall_risk_score), risk_tier:tierFromScore(r.overall_risk_score),
+      risky_clause_count:num(r.risky_clause_count), red_flag_count:num(r.red_flag_count),
+      top_recommendation:r.top_recommendation||""
+    };});
+    $("loading").hidden=true; $("app").hidden=false;
+    renderHeroVerdict(); renderTierbar(); renderSpectrum(); renderLeaders(); renderDanger();
+    renderFilters(); renderTable(); wireSort(); wireDrawer();
+    $("search").addEventListener("input",function(e){searchTerm=e.target.value.trim().toLowerCase();renderTable();});
+    setupReveal();
+  }
+
+  function counts(){var c={Low:0,Medium:0,High:0};rows.forEach(function(r){c[r.risk_tier]++;});return c;}
+  function total(){return rows.length;}
+  function totalFlags(){return rows.reduce(function(a,r){return a+r.red_flag_count;},0);}
+  function avg(){return Math.round(rows.reduce(function(a,r){return a+r.overall_risk_score;},0)/total());}
+
+  // ---------- HERO + VERDICT ----------
+  function renderHeroVerdict(){
+    var c=counts(), t=total(), f=totalFlags();
+    $("s-total").dataset.count=t; $("s-high").dataset.count=c.High; $("s-avg").dataset.count=avg(); $("s-flags").dataset.count=f;
+    $("h-total").dataset.count=t; $("h-flags").dataset.count=f;
+    $("s-high-sub").textContent=Math.round(c.High/t*100)+"% of portfolio";
+    var withFlags=rows.filter(function(r){return r.red_flag_count>0;}).length;
+    $("s-flags-sub").textContent="across "+withFlags+" contracts";
+    var riskiest=rows.slice().sort(function(a,b){return b.overall_risk_score-a.overall_risk_score;})[0];
+    $("verdict-line").innerHTML="Of the "+t+" contracts reviewed, <b style='color:var(--high)'>"+c.High+" are high-risk</b>, "+c.Medium+" warrant careful review, and <b style='color:var(--low)'>"+c.Low+" present minimal concern</b>. The highest exposure is <b>"+esc(riskiest.contract_name)+"</b>, at "+riskiest.overall_risk_score+" out of 100.";
+  }
+  function animateCount(el,target,dur){
+    var start=0, t0=null;
+    function step(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/dur,1);var e=1-Math.pow(1-p,3);el.textContent=Math.round(start+(target-start)*e);if(p<1)requestAnimationFrame(step);}
+    requestAnimationFrame(step);
+  }
+
+  function renderTierbar(){
+    var c=counts(), t=total(), bar=$("tierbar"); bar.innerHTML="";
+    [["High",c.High,"high"],["Medium",c.Medium,"med"],["Low",c.Low,"low"]].forEach(function(d){
+      if(!d[1])return;
+      var seg=document.createElement("div"); seg.className="tierseg "+d[2];
+      seg.dataset.w=(d[1]/t*100); seg.textContent=d[1]; bar.appendChild(seg);
+    });
+    var leg=$("tierbar-legend"); leg.innerHTML="";
+    [["High",c.High],["Medium",c.Medium],["Low",c.Low]].forEach(function(d){
+      var it=document.createElement("div"); it.className="it";
+      it.innerHTML='<span class="dot" style="background:'+TC[d[0]]+'"></span><b>'+d[1]+'</b>&nbsp;'+d[0]+'-risk';
+      leg.appendChild(it);
+    });
+  }
+
+  // ---------- SPECTRUM (beeswarm) ----------
+  function renderSpectrum(){
+    var box=$("spectrum"); var W=box.clientWidth||760, H=260, pad=26;
+    var pts=rows.map(function(r){return {r:r, score:r.overall_risk_score, rad:9+Math.min(r.red_flag_count,8)*1.0};});
+    pts.sort(function(a,b){return a.score-b.score;});
+    var midY=H/2;
+    var placed=[];
+    pts.forEach(function(p){
+      var x=pad+(p.score/100)*(W-2*pad), rad=p.rad, y=midY, ok=false;
+      for(var k=0;k<260&&!ok;k++){
+        var cand=midY+(k%2===0?1:-1)*Math.ceil(k/2)*4;
+        ok=true;
+        for(var j=0;j<placed.length;j++){
+          var q=placed[j], dx=x-q.x;
+          if(Math.abs(dx)>rad+q.rad+2)continue;
+          var md=rad+q.rad+2, dy=cand-q.y;
+          if(dx*dx+dy*dy<md*md){ok=false;break;}
+        }
+        if(ok)y=cand;
+      }
+      y=Math.max(rad+2,Math.min(H-rad-2,y));
+      p.x=x; p.y=y; placed.push({x:x,y:y,rad:rad});
+    });
+    // remove old bubbles (keep zone-bands)
+    [].slice.call(box.querySelectorAll(".bubble")).forEach(function(b){b.remove();});
+    pts.forEach(function(p,i){
+      var b=document.createElement("div"); b.className="bubble";
+      var d=2*p.rad;
+      b.style.width=d+"px"; b.style.height=d+"px"; b.style.left=p.x+"px"; b.style.top=p.y+"px";
+      b.style.background=TC[p.r.risk_tier]; b.style.transitionDelay=(i*22)+"ms";
+      if(p.rad>=14)b.innerHTML='<span class="bn">'+p.r.red_flag_count+'</span>';
+      b.addEventListener("mouseenter",function(e){showTip(e,p.r);});
+      b.addEventListener("mousemove",function(e){moveTip(e);});
+      b.addEventListener("mouseleave",hideTip);
+      b.addEventListener("click",function(){hideTip();openDrawer(p.r.contract_name);});
+      box.appendChild(b);
+    });
+    // axis labels
+    var axis=$("axis"); axis.innerHTML="";
+    [0,25,50,75,100].forEach(function(v){
+      var l=document.createElement("span"); l.className="lab"; l.style.left=(pad+(v/100)*(W-2*pad))+"px"; l.textContent=v; axis.appendChild(l);
+    });
+  }
+  function showTip(e,r){
+    var tt=$("tooltip");
+    tt.innerHTML='<div class="tt-name">'+esc(r.contract_name)+'</div><div class="tt-meta">'+esc(r.contract_type)+'</div><div class="tt-meta" style="margin-top:5px;"><span class="tt-score" style="color:'+TC[r.risk_tier]+'">'+r.overall_risk_score+'/100 · '+r.risk_tier+'</span> · '+r.red_flag_count+' red flags</div>';
+    tt.classList.add("show"); moveTip(e);
+  }
+  function moveTip(e){var tt=$("tooltip");var x=e.clientX+14,y=e.clientY+14;if(x+240>window.innerWidth)x=e.clientX-240;tt.style.left=x+"px";tt.style.top=y+"px";}
+  function hideTip(){$("tooltip").classList.remove("show");}
+
+  // ---------- LEADERBOARD ----------
+  function renderLeaders(){
+    var top=rows.slice().sort(function(a,b){return b.overall_risk_score-a.overall_risk_score;}).slice(0,Math.min(5,rows.length));
+    var box=$("leaders"); box.innerHTML="";
+    top.forEach(function(r,i){
+      var q=quip(r.overall_risk_score);
+      var el=document.createElement("div"); el.className="leader";
+      el.innerHTML='<div class="rank">'+(i+1)+'</div>'+
+        '<span class="quip" style="color:'+q.c+';background:'+q.bg+'">'+q.t+'</span>'+
+        '<div class="lname">'+esc(r.contract_name)+'</div>'+
+        '<div class="ltype">'+esc(r.contract_type)+'</div>'+
+        '<div class="score-line"><span class="sc" style="color:'+TC[r.risk_tier]+'">'+r.overall_risk_score+'</span><span class="of">/ 100 risk</span></div>'+
+        '<div class="flags">'+r.red_flag_count+' red flags · '+r.risky_clause_count+' risky clauses</div>'+
+        '<div class="open-cue">View assessment →</div>';
+      el.addEventListener("click",function(){openDrawer(r.contract_name);});
+      box.appendChild(el);
+    });
+  }
+
+  // ---------- CLAUSE DANGER ----------
+  function renderDanger(){
+    if(!hasJson)return;
+    var agg={};
+    Object.keys(detailByName).forEach(function(name){
+      var cs=detailByName[name].clauses; if(!Array.isArray(cs))return;
+      cs.forEach(function(c){
+        var type=(c.clause_type||"Other").trim();
+        if(!agg[type])agg[type]={total:0,risky:0};
+        agg[type].total++;
+        if(String(c.risk_level||"").toLowerCase().indexOf("risk")===0)agg[type].risky++;
+      });
+    });
+    var arr=Object.keys(agg).map(function(k){return {type:k,total:agg[k].total,risky:agg[k].risky};});
+    arr=arr.filter(function(a){return a.risky>0;}).sort(function(a,b){return b.risky-a.risky;}).slice(0,8);
+    if(!arr.length)return;
+    $("danger-section").hidden=false;
+    var maxR=arr[0].risky;
+    var box=$("danger-list"); box.innerHTML="";
+    arr.forEach(function(a){
+      var row=document.createElement("div"); row.className="danger-row";
+      row.innerHTML='<div class="dl">'+esc(a.type)+'</div>'+
+        '<div class="track"><div class="fill" data-w="'+(a.risky/maxR*100)+'"></div></div>'+
+        '<div class="dc"><b>'+a.risky+'</b>/'+a.total+'</div>';
+      box.appendChild(row);
+    });
+  }
+
+  // ---------- FILTERS / SORT / TABLE ----------
+  function renderFilters(){
+    var c=counts();
+    var defs=[{k:"All",l:"All",col:null,n:rows.length},{k:"High",l:"High",col:TC.High,n:c.High},{k:"Medium",l:"Medium",col:TC.Medium,n:c.Medium},{k:"Low",l:"Low",col:TC.Low,n:c.Low}];
+    var box=$("filters"); box.innerHTML="";
+    defs.forEach(function(d){
+      var b=document.createElement("button"); b.className="fbtn"+(tierFilter===d.k?" active":"");
+      b.innerHTML=(d.col?'<span class="pip" style="background:'+d.col+'"></span>':'')+d.l+' <span class="count">'+d.n+'</span>';
+      b.addEventListener("click",function(){tierFilter=d.k;renderFilters();renderTable();});
+      box.appendChild(b);
+    });
+  }
+  function wireSort(){
+    document.querySelectorAll("th.sortable").forEach(function(th){
+      th.addEventListener("click",function(){
+        var k=th.getAttribute("data-key");
+        if(sortKey===k)sortDir*=-1; else {sortKey=k;sortDir=(k==="contract_name"||k==="contract_type"||k==="risk_tier")?1:-1;}
+        updateSortHeaders(); renderTable();
+      });
+    });
+    updateSortHeaders();
+  }
+  function updateSortHeaders(){
+    document.querySelectorAll("th.sortable").forEach(function(th){
+      var ar=th.querySelector(".ar");
+      if(th.getAttribute("data-key")===sortKey){th.classList.add("sorted");ar.textContent=sortDir===-1?"▼":"▲";}
+      else{th.classList.remove("sorted");ar.textContent="";}
+    });
+  }
+  function tierRank(t){return {High:3,Medium:2,Low:1}[t]||0;}
+  function currentRows(){
+    var out=rows.filter(function(r){
+      if(tierFilter!=="All"&&r.risk_tier!==tierFilter)return false;
+      if(searchTerm){if((r.contract_name+" "+r.contract_type).toLowerCase().indexOf(searchTerm)===-1)return false;}
+      return true;
+    });
+    out.sort(function(a,b){
+      var av,bv;
+      if(sortKey==="risk_tier"){av=tierRank(a.risk_tier);bv=tierRank(b.risk_tier);}
+      else{av=a[sortKey];bv=b[sortKey];}
+      if(typeof av==="string")return av.localeCompare(bv)*sortDir;
+      return (av-bv)*sortDir;
+    });
+    return out;
+  }
+  function renderTable(){
+    var data=currentRows(), tbody=$("tbody"); tbody.innerHTML="";
+    if(!data.length){var er=document.createElement("tr");er.className="empty-row";er.innerHTML='<td colspan="6">No contracts match this filter.</td>';tbody.appendChild(er);return;}
+    data.forEach(function(r){
+      var tc=TCLASS[r.risk_tier];
+      var tr=document.createElement("tr");
+      tr.innerHTML='<td><span class="cn"><svg class="ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>'+esc(r.contract_name)+'</span></td>'+
+        '<td class="ctype">'+esc(r.contract_type)+'</td>'+
+        '<td><span class="badge '+tc+'"><span class="pip"></span>'+r.risk_tier+'</span></td>'+
+        '<td><div class="scell"><span class="snum">'+r.overall_risk_score+'</span><span class="strack"><span class="sfill" style="width:'+r.overall_risk_score+'%;background:'+TC[r.risk_tier]+'"></span></span></div></td>'+
+        '<td class="num"><span class="pnum '+(r.risky_clause_count?"":"zero")+'">'+r.risky_clause_count+'</span></td>'+
+        '<td class="num"><span class="pnum '+(r.red_flag_count?"flag":"zero")+'">'+r.red_flag_count+'</span></td>';
+      tr.addEventListener("click",function(){openDrawer(r.contract_name);});
+      tbody.appendChild(tr);
+    });
+  }
+
+  // ---------- DRAWER ----------
+  function wireDrawer(){
+    $("overlay").addEventListener("click",closeDrawer);
+    $("drawer-close").addEventListener("click",closeDrawer);
+    document.addEventListener("keydown",function(e){if(e.key==="Escape")closeDrawer();});
+  }
+  function openDrawer(name){
+    var r=rows.filter(function(x){return x.contract_name===name;})[0]; if(!r)return;
+    var d=detailByName[name];
+    $("d-type").textContent=r.contract_type;
+    $("d-name").textContent=r.contract_name;
+    var q=quip(r.overall_risk_score);
+    $("d-badge").innerHTML='<span class="badge '+TCLASS[r.risk_tier]+'"><span class="pip"></span>'+r.risk_tier+' risk</span>';
+    $("d-quip").innerHTML='<span style="color:'+q.c+'">'+q.t+'</span>';
+    // ring
+    var pct=r.overall_risk_score, C=2*Math.PI*32, off=C*(1-pct/100);
+    $("d-ring").innerHTML='<svg width="78" height="78"><circle cx="39" cy="39" r="32" fill="none" stroke="#EFEDF7" stroke-width="7"/><circle cx="39" cy="39" r="32" fill="none" stroke="'+TC[r.risk_tier]+'" stroke-width="7" stroke-linecap="round" stroke-dasharray="'+C+'" stroke-dashoffset="'+C+'" id="ring-c"/></svg><div class="rv" style="color:'+TC[r.risk_tier]+'">'+pct+'</div>';
+    setTimeout(function(){var rc=$("ring-c");if(rc){rc.style.transition="stroke-dashoffset 1s cubic-bezier(.2,.7,.2,1)";rc.style.strokeDashoffset=off;}},60);
+    // body
+    var body=$("d-body"); var html="";
+    var summary=d&&d.plain_english_summary?d.plain_english_summary:(r.top_recommendation||"");
+    if(summary)html+='<div><p class="d-sec-l">'+(d&&d.plain_english_summary?"Plain-English Summary":"Top Recommendation")+'</p><div class="summary">'+esc(summary)+'</div></div>';
+    var flags=d&&Array.isArray(d.red_flags)?d.red_flags:[];
+    if(flags.length){
+      html+='<div class="redflags"><p class="d-sec-l">Red Flags ('+flags.length+')</p><ul>'+flags.map(function(f){return '<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg><span>'+esc(f)+'</span></li>';}).join("")+'</ul></div>';
+    }
+    var clauses=d&&Array.isArray(d.clauses)?d.clauses:[];
+    if(clauses.length){
+      html+='<p class="d-sec-l">Clause-by-Clause ('+clauses.length+')</p>';
+      html+=clauses.map(function(c){
+        var lvl=String(c.risk_level||"Neutral").toLowerCase();
+        var cls=lvl.indexOf("risk")===0?"risky":(lvl.indexOf("fav")===0?"favorable":"neutral");
+        return '<div class="clause"><div class="top"><span class="ct2">'+esc(c.clause_type||"Clause")+'</span><span class="chip '+cls+'"><span class="pip"></span>'+esc(c.risk_level||"Neutral")+'</span></div>'+
+          (c.finding?'<div class="finding">'+esc(c.finding)+'</div>':'')+
+          (c.recommendation?'<div class="rec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V18h6v-1.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg><span><b>Recommendation:</b> '+esc(c.recommendation)+'</span></div>':'')+
+          '</div>';
+      }).join("");
+    }
+    if(!summary&&!flags.length&&!clauses.length)html='<div class="no-detail">'+(hasJson?"No additional detail recorded.":"Detailed analysis needs results.json (only the CSV summary loaded).")+'</div>';
+    body.innerHTML=html; body.scrollTop=0;
+    $("overlay").classList.add("show"); $("drawer").classList.add("show"); $("drawer").setAttribute("aria-hidden","false");
+  }
+  function closeDrawer(){$("overlay").classList.remove("show");$("drawer").classList.remove("show");$("drawer").setAttribute("aria-hidden","true");}
+
+  // ---------- REVEAL + ANIMATIONS ----------
+  function revealEl(el){
+    if(el.dataset.shown)return; el.dataset.shown="1";
+    el.classList.add("in");
+    el.querySelectorAll("[data-count]").forEach(function(c){if(!c.dataset.done){c.dataset.done="1";animateCount(c,parseInt(c.dataset.count,10)||0,1100);}});
+    if(el.querySelector(".tierseg"))el.querySelectorAll(".tierseg").forEach(function(s){s.style.width=s.dataset.w+"%";});
+    if(el.querySelector("#spectrum"))el.querySelector("#spectrum").classList.add("go");
+    if(el.querySelector(".danger-row"))el.querySelectorAll(".fill").forEach(function(f){f.style.width=f.dataset.w+"%";});
+  }
+  function setupReveal(){
+    var els=[].slice.call(document.querySelectorAll(".reveal"));
+    function check(){
+      var vh=window.innerHeight||800;
+      els.forEach(function(el){
+        if(el.dataset.shown)return;
+        var rect=el.getBoundingClientRect();
+        if(rect.top<vh*0.9 && rect.bottom>-40)revealEl(el);
+      });
+    }
+    check();
+    window.addEventListener("scroll",check,{passive:true});
+    window.addEventListener("resize",check,{passive:true});
+    // safety net: ensure nothing stays hidden after a beat
+    setTimeout(check,400); setTimeout(function(){els.forEach(revealEl);},2500);
+    // re-layout spectrum on resize
+    var rt; window.addEventListener("resize",function(){clearTimeout(rt);rt=setTimeout(function(){renderSpectrum();var sp=document.querySelector("#spectrum");if(sp)sp.classList.add("go");},200);});
+  }
+
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init); else init();
+})();
+</script>
+</body>
+</html>
